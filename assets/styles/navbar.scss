@@ -1,0 +1,55 @@
+.navigation {
+  background-color: $navbar;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.logo-image {
+  height: 250px;
+  position: absolute;
+  left: -100px;
+  top: -50px;
+}
+
+.fab {
+  font-size: 2em;
+  color:black;
+  &:hover{
+    color: $button;
+  }
+}
+
+.insta-icon {
+  position: absolute;
+  right:20px;
+  top:20px;
+}
+
+.fb-icon {
+  position: absolute;
+  right:70px;
+  top:20px;
+}
+
+.navbar-buttons li {
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  color: white;
+  list-style: none;
+  padding: 10px;
+  margin: 0px 50px;
+  background-color: $dark-blue;
+  border-radius: 10px;
+  &:hover {
+    background-color: $darker-blue;
+    transition: 2s;
+    cursor: pointer;
+  }
+}
+
+.navbar-buttons {
+  display: flex;
+  justify-content: space-between;
+}

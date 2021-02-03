@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'home/component/_nav.html.twig' %}
+    {% for image in images %}
+        <img class="self-photo" src="{{ image.ownerphoto }}" alt="">
+
+    {% endfor %}
+
+    <div class="about-me-text">
+<h5>A hot frothy coffee? <i class="fas fa-mug-hot"></i> A fresh crispy croissant? A real English breakfast? How do you start the day? </h5>
+        <p>My favorite meal is the breakfast, especially when you can allow yourself to enjoy it and
+            kick off the day in this way. And come on, breakfasts can be truly various, creative, seasonal, and tasty at
+            the same time. Therefore, I started collecting my recipes and sharing them in the social media
+            (Instagram, Facebook) so you can get proof of the above listed characteristics, get to know me and what
+            I represent.</p>
+
+        <p>Where it got started? When I was a university student and studied for my exams, I always had the tv on.
+            Not because I wanted to distract my attention on purpose but because in this way, I could make myself
+            believe that it was not all about studying (boring...) but also letting some fun in. This fun were the
+            cooking and baking shows which became my passion straight away.</p>
+        <p>I have always known that one day I would like to start a business where I can be in touch with people,
+            use my creative side and skills and basically represent myself.
+            I hope that you will enjoy preparing my recipes as much as I do, and moreover I believe that one day I
+            can also welcome and serve you at my own place.</p>
+    </div>
+{% endblock %}

@@ -3,10 +3,9 @@
 {% block body %}
     <video autoplay muted id="myVideo" >
         <source src="{{ asset('build/images/tbsvideo.mp4') }}" type="video/mp4" >
-        Your browser does not support HTML5 video.
     </video>
 <div class="home-content">
-    <h1> The Breakfast Show </h1>
-    <button class="home-button"><a href=""> ENTER </a></button>
+    <h1> <img src="{{ asset('build/images/logo/logo_white.png') }}" alt=""></h1>
+    <a href="{{ path("welcome") }}"><button class="home-button"> enter </button></a>
 </div>
 {%  endblock %}

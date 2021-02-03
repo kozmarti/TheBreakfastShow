@@ -2,6 +2,9 @@
 
 
 namespace App\Controller;
+use App\Entity\Images;
+use App\Repository\ImagesRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,6 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
     /**
      * @Route("/", name="home")
      */
@@ -21,8 +30,9 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="welcome")
      */
-    public function welcome(): Response
+    public function welcome(ImagesRepository $imagesRepository): Response
     {
-        return $this->render('home/index.html.twig');
+        $images=$imagesRepository->findAll();
+        return $this->render('home/content/welcome.html.twig', ['images' => $images]);
     }
 }
