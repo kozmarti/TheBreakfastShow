@@ -22,10 +22,6 @@ class Ingredient
      */
     private $name;
 
-    /**
-     * @ORM\OneToOne(targetEntity=FunFact::class, mappedBy="ingredient", cascade={"persist", "remove"})
-     */
-    private $funFact;
 
     public function getId(): ?int
     {
@@ -40,24 +36,7 @@ class Ingredient
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
-    public function getFunFact(): ?FunFact
-    {
-        return $this->funFact;
-    }
-
-    public function setFunFact(FunFact $funFact): self
-    {
-        // set the owning side of the relation if necessary
-        if ($funFact->getIngredient() !== $this) {
-            $funFact->setIngredient($this);
-        }
-
-        $this->funFact = $funFact;
-
-        return $this;
-    }
 }
