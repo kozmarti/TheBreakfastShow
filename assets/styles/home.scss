@@ -1,0 +1,43 @@
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+.home-content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 30px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.home-button {
+  height: 150px;
+  width: 200px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: $dark-blue;
+  margin-top: -75px;
+  margin-left: -100px;
+  color:white;
+  border:none;
+  font-size: 3em;
+  border-radius: 5px;
+  animation: appear 9s;
+
+&:hover {
+    background-color: $darker-blue;
+  transition: 2s;
+}
+}
+
+@keyframes appear {
+  0% {opacity: 0}
+  80% {opacity: 0}
+  100% {opacity: 1}
+}
