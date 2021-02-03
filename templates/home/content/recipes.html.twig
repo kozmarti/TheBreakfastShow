@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'home/component/_nav.html.twig' %}
+    {% for season in seasons %}
+        {{season.number }}
+{{season.title }}
+
+    {% endfor %}
+
+    {% for episode in episodes %}
+        <div>
+       <div> {{episode.season.number }}
+        {{episode.season.title }}
+        </div>
+        <div>{{episode.number }}
+        {{episode.title }}
+        </div>
+        <div>{{episode.recipename }}
+        <img class="self-photo" src="{{episode.images.meal}}" alt="k">
+        </div>
+            <div>{{episode.preparation.text }}</div>
+        <ul>
+    {% for ingr in episode.listingredients %}
+
+            <li>{{ingr.ingredient.name }}</li>
+
+        {% endfor %}
+        </ul>
+    {% endfor %}
+
+
+    </div>
+{% endblock %}

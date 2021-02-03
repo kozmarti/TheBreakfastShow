@@ -1,4 +1,51 @@
 .self-photo {
   width: 200px;
   box-shadow: 1px 1px 3px 2px $dark-blue;
+  margin: 10px;
+}
+
+.fact-photo {
+  max-width: 900px;
+  max-height: 900px;
+  box-shadow: 1px 1px 3px 2px $dark-blue;
+  border-radius: 10px;
+}
+.funfact-container{
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  & h1{
+    padding: 40px;
+  }
+}
+
+.random-button {
+  position: absolute;
+  right: 200px;
+  top: 50px;
+  background-color: $button;
+  font-size: 0.5em;
+  color: white;
+  border-radius: 50%;
+  padding: 20px;
+  transform: rotate(20deg);
+  text-decoration: none;
+  animation: moving 1s infinite;
+
+  &:hover{
+    text-decoration: none;
+    color:white;
+    background-color: $darker-blue;
+    transition: 2s infinite;
+  }
+}
+
+@keyframes moving {
+  0% {  transform: rotate(20deg)}
+  20%{  transform: rotate(10deg)}
+  40% {  transform: rotate(20deg)}
+  60%{  transform: rotate(10deg)}
+  80% {  transform: rotate(20deg)}
+  80% {  transform: rotate(20deg)}
+
+
 }

@@ -47,6 +47,14 @@
     transition: 2s;
     cursor: pointer;
   }
+  & a {
+    text-decoration: none;
+    color:white;
+    &:hover{
+      text-decoration: none;
+      color:white;
+    }
+  }
 }
 
 .navbar-buttons {

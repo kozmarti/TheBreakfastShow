@@ -1,9 +1,10 @@
 <nav class="navigation">
-    <img class="logo-image" src="{{ asset('build/images/logo/logo_black.png') }}" alt="logo">
+    <a href="{{ path('home') }}"><img class="logo-image" src="{{ asset('build/images/logo/logo_black.png') }}" alt="logo"></a>
     <ul class="navbar-buttons">
-        <li class="navigation-button">About me</li>
-        <li class="navigation-button">About you</li>
-        <li class="navigation-button">Recipes</li>
+        <li class="navigation-button"><a href="{{ path('welcome') }}">About me</a></li>
+        <li class="navigation-button"><a href="">About you</a></li>
+        <li class="navigation-button"><a href="{{ path('recipes_home') }}">Recipes</a></li>
+        <li class="navigation-button"><a href="{{ path('fun_fact') }}">Fun fact</a></li>
     </ul>
 
     <a class="insta-icon" href="https://www.instagram.com/the_breakfast_show/"><i class="fab fa-instagram"></i></a>
