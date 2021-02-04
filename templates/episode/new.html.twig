@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}New Episode{% endblock %}
-
 {% block body %}
+        {% include 'home/component/_nav.html.twig' %}
+<div class="about-me-bg"></div>
+
+<div class="about-me-text">
     <h1>Create new Episode</h1>
-
+    <button class="login-button m-3"> <a href="{{ path('season_new') }}"> Add new season </a> </button>
     {{ include('episode/_form.html.twig') }}
-
-    <a href="{{ path('episode_index') }}">back to list</a>
+</div>
 {% endblock %}
