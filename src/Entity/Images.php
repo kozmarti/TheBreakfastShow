@@ -26,16 +26,15 @@ class Images
     private $meal;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-
-    /**
      * @Vich\UploadableField(mapping="meal_file", fileNameProperty="meal")
      * @var File
      */
 
     private $mealFile;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $ingredient;
 
     /**
