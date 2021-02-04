@@ -101,4 +101,14 @@ class Images
 
         return $this;
     }
+
+    public function getMealFile(): ?File
+
+    {
+
+        return $this->mealFile;
+
+    }
+
+
 }

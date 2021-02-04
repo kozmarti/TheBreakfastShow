@@ -20,8 +20,8 @@ class EpisodeType extends AbstractType
             ->add('recipename')
             ->add('preparationtime')
             ->add('person')
-            ->add('preparation', PreparationType::class)
-            ->add('images', ImagesType::class);
+            ->add('preparation', PreparationType::class);
+            /*->add('images', ImagesType::class);*/
 
 
     }
