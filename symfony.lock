@@ -96,6 +96,9 @@
     "egulias/email-validator": {
         "version": "2.1.25"
     },
+    "erusev/parsedown": {
+        "version": "1.7.4"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
@@ -546,6 +549,9 @@
         "version": "v5.2.3"
     },
     "twig/extra-bundle": {
+        "version": "v3.2.1"
+    },
+    "twig/markdown-extra": {
         "version": "v3.2.1"
     },
     "twig/twig": {

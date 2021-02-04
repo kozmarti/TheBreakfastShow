@@ -36,7 +36,7 @@ class EpisodeFixtures extends Fixture implements ContainerAwareInterface, Depend
             $episode->setTitle($data['title']);
             $episode->setNumber((int)$data['number']);
             $episode->setRecipename($data['recipename']);
-            $episode->setPreparationtime(new \DateTime());
+            $episode->setPreparationtime(new \DateTime($data['preparationtime']));
             $episode->setPerson((int)$data['person']);
             $episode->setSeason($this->getReference('season_' . $data['season_number']));
             $manager->persist($episode);

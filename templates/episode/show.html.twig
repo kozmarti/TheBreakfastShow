@@ -1,46 +1,77 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Episode{% endblock %}
-
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
 
 
     <div class="about-me-bg"></div>
-    <h1>Episode</h1>
+<div class="episode-box">
+    <div>
+        <div class="handwriting"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
+            <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i>
+            {{episode.recipename }}
+        </div>
+        <div class="d-flex justify-content-between">
+        <div >
+            <img class="meal-photo m-5" src="{{episode.images.meal}}" alt="k">
+        </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ episode.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ episode.title }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ episode.number }}</td>
-            </tr>
-            <tr>
-                <th>Recipename</th>
-                <td>{{ episode.recipename }}</td>
-            </tr>
-            <tr>
-                <th>Preparationtime</th>
-                <td>{{ episode.preparationtime ? episode.preparationtime|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Person</th>
-                <td>{{ episode.person }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('episode_index') }}">back to list</a>
 
-    <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
+        <div>
+
+
+            <div class="d-flex justify-content-around">
+                <div class="m-5"><i class="far fa-clock"></i> {{ episode.preparationtime ? episode.preparationtime|date('H:i:s') : ''  }}</div>
+                <div class="m-5"> <i class="fas fa-users"></i> : {{episode.person }}</div>
+                <div class="m-5"><i class="fas fa-shopping-cart"></i> Ingredients: </div></div>
+            <div><i class="fas fa-calculator"></i> Calculate ingredients for <input type="number" step="{{ episode.person }}"> persons </div>
+            <div class="d-flex align-items-center justify-content-between" >
+
+            <ul class="d-flex flex-column align-items-start">
+
+                {% set i = "" %}
+                {% for ingr in episode.listingredients %}
+
+                    {%  if ingr.subingredient %}
+                        {%  if i is not same as(ingr.subingredient) %}
+                            {% set i = ingr.subingredient %}
+                                    <div class="m-2"> {{ i }} </div>
+                        {% endif %}
+                        <li>{{ingr.quantity }}
+                            {% if ingr.measure.id is defined and ingr.measure.id is not null %}
+                                {{ ingr.measure.name }}
+                            {% endif %}
+                            {{ingr.ingredient.name }}</li>
+
+                    {% else %}
+                    <li>{{ingr.quantity }}
+                        {% if ingr.measure.id is defined and ingr.measure.id is not null %}
+                            {{ ingr.measure.name }}
+                        {% endif %}
+                        {{ingr.ingredient.name }}</li>
+
+                {% endif %}
+
+                {% endfor %}
+            </ul>
+                <img class="medium-photo align-self-end" src="{{episode.images.ingredient}}" alt="k">
+            </div>
+        </div>
+
+        </div>
+            <div><i class="fas fa-bread-slice"></i> Preparation:
+            {% apply markdown_to_html %}
+            {{episode.preparation.text }}
+            {% endapply %}
+        </div>
+
+
+           </div>
+    <a href="{{ path('season_show', {'id': episode.season.id}) }}">Back to Season {{ episode.season.number}}. : {{  episode.season.title }}</a>
+
+    {# <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
 
     {{ include('episode/_delete_form.html.twig') }}
+    #}
+</div>
 {% endblock %}
