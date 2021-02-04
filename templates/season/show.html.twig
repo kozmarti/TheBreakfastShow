@@ -1,30 +1,34 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Season{% endblock %}
-
 {% block body %}
-    <h1>Season</h1>
+    {% include 'home/component/_nav.html.twig' %}
+<div class="about-me-bg"></div>
+    <div class="about-me-bg"></div>
+    <div class="about-me-bg"></div>
+<div class="season-box">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ season.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ season.title }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ season.number }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h1 class="handwriting">Season {{ season.number }}. :  {{ season.title  }}</h1>
 
-    <a href="{{ path('season_index') }}">back to list</a>
+    {% for episode in episodes %}
+        <hr>
+        <div class="d-flex justify-content-between">
+            <div class="d-flex flex-column justify-content-around">
+            <div><a href="{{ path('episode_show', {'id': episode.id}) }}"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
+                    <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i> </a>
+            </div>
+        <div>{{episode.recipename }}</div>
 
+            </div>
+            <img class="small-photo" src="{{episode.images.ownerphoto}}" alt="k">
+
+        </div>
+            {% endfor %}
+
+    <hr>
+    <a href="{{ path('recipes_home') }}">Back to seasons</a>
+{#
     <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
 
     {{ include('season/_delete_form.html.twig') }}
+#}
+</div>
 {% endblock %}

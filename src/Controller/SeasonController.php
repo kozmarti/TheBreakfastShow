@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Season;
 use App\Form\SeasonType;
 use App\Repository\SeasonRepository;
+use App\Repository\EpisodeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,15 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SeasonController extends AbstractController
 {
-    /**
-     * @Route("/", name="season_index", methods={"GET"})
-     */
-    public function index(SeasonRepository $seasonRepository): Response
-    {
-        return $this->render('season/index.html.twig', [
-            'seasons' => $seasonRepository->findAll(),
-        ]);
-    }
 
     /**
      * @Route("/new", name="season_new", methods={"GET","POST"})
@@ -51,10 +43,12 @@ class SeasonController extends AbstractController
     /**
      * @Route("/{id}", name="season_show", methods={"GET"})
      */
-    public function show(Season $season): Response
+    public function show(Season $season, EpisodeRepository $episodeRepository): Response
     {
+        $episodes=$episodeRepository->findBy(['season'=>$season]);
         return $this->render('season/show.html.twig', [
             'season' => $season,
+            'episodes' => $episodes
         ]);
     }
 

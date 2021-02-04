@@ -2,14 +2,20 @@
 
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
-<h1>The Breakfast Show</h1>
+    <div class="about-me-bg"></div>
+
+    <div class="about-me-text">
+
+<h1><i class="fas fa-utensils"></i> The Breakfast Show</h1>
     {% for season in seasons %}
-      <div> Season {{season.number }}. :
-{{season.title }}
+      <div>
+          <a href="{{ path('season_show', {'id': season.id}) }}">Season {{season.number }}. :
+            {{season.title }}
+          </a>
       </div>
     {% endfor %}
-
-    {% for episode in episodes %}
+    </div>
+{# {% for episode in episodes %}
         <div>
        <div> Season {{episode.season.number }}. :
         {{episode.season.title }}
@@ -36,7 +42,7 @@
         {% endfor %}
         </ul>
     {% endfor %}
+   </div>
+#}
 
-
-    </div>
 {% endblock %}
