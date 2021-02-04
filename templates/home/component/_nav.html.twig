@@ -5,10 +5,16 @@
         {# <li class="navigation-button"><a href="">About you</a></li>  #}
         <li class="navigation-button"><a href="{{ path('recipes_home') }}">Recipes</a></li>
         <li class="navigation-button"><a href="{{ path('fun_fact') }}">Fun fact</a></li>
+        {% if app.user %}
+            <li class="navigation-button"><a href="{{ path('fun_fact') }}">Recipe Editor</a></li>
+
+                <li class="navigation-button"><a href="{{ path('app_logout') }}">Logout</a></li>
+
+        {% endif %}
     </ul>
 
-    <a class="insta-icon" href="https://www.instagram.com/the_breakfast_show/"><i class="fab fa-instagram"></i></a>
-    <a class="fb-icon" href="https://www.facebook.com/thebreakfastshow1/"><i class="fab fa-facebook-square"></i></a>
+    <a class="insta-icon" href="https://www.instagram.com/the_breakfast_show/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a class="fb-icon" href="https://www.facebook.com/thebreakfastshow1/" target="_blank"><i class="fab fa-facebook-square"></i></a>
 
 
 </nav>

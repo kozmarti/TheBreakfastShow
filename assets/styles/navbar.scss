@@ -33,7 +33,7 @@
   top:20px;
 }
 
-.navbar-buttons li {
+.navbar-buttons li, .login-button {
   font-family: 'Pacifico', cursive;
   font-size: 2em;
   color: white;
@@ -42,6 +42,7 @@
   margin: 0px 50px;
   background-color: $dark-blue;
   border-radius: 10px;
+  border: none;
   &:hover {
     background-color: $darker-blue;
     transition: 2s;
