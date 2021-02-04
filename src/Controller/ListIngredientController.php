@@ -39,7 +39,7 @@ class ListIngredientController extends AbstractController
             $entityManager->persist($listIngredient);
             $entityManager->flush();
 
-            return $this->redirectToRoute('list_ingredient_index');
+            return $this->redirectToRoute('list_ingredient_new');
         }
 
         return $this->render('list_ingredient/new.html.twig', [
