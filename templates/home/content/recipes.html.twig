@@ -2,28 +2,36 @@
 
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
+<h1>The Breakfast Show</h1>
     {% for season in seasons %}
-        {{season.number }}
+      <div> Season {{season.number }}. :
 {{season.title }}
-
+      </div>
     {% endfor %}
 
     {% for episode in episodes %}
         <div>
-       <div> {{episode.season.number }}
+       <div> Season {{episode.season.number }}. :
         {{episode.season.title }}
         </div>
-        <div>{{episode.number }}
+        <div>Episode {{episode.number }}. :
         {{episode.title }}
         </div>
         <div>{{episode.recipename }}
-        <img class="self-photo" src="{{episode.images.meal}}" alt="k">
+        <img class="self-photo" src="{{episode.images.ownerphoto}}" alt="k">
         </div>
-            <div>{{episode.preparation.text }}</div>
+            <div>PREAPARATION: {{episode.preparation.text }}</div>
         <ul>
+            <div> For {{episode.person }} persons</div>
     {% for ingr in episode.listingredients %}
 
-            <li>{{ingr.ingredient.name }}</li>
+            <li>{{ingr.quantity * 5 }}
+                {% if ingr.measure.id is defined and ingr.measure.id is not null %}
+                    {{ ingr.measure.name }}
+                {% endif %}
+                {{ingr.ingredient.name }}</li>
+
+
 
         {% endfor %}
         </ul>

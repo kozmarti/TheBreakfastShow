@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Episode{% endblock %}
+
+{% block body %}
+    <h1>Episode</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ episode.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ episode.title }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ episode.number }}</td>
+            </tr>
+            <tr>
+                <th>Recipename</th>
+                <td>{{ episode.recipename }}</td>
+            </tr>
+            <tr>
+                <th>Preparationtime</th>
+                <td>{{ episode.preparationtime ? episode.preparationtime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Person</th>
+                <td>{{ episode.person }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('episode_index') }}">back to list</a>
+
+    <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
+
+    {{ include('episode/_delete_form.html.twig') }}
+{% endblock %}

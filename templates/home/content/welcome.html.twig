@@ -2,26 +2,23 @@
 
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
-    {% for image in images %}
-        <img class="self-photo" src="{{ image.ownerphoto }}" alt="">
-
-    {% endfor %}
+   <div class="about-me-bg"></div>
 
     <div class="about-me-text">
-<h5>A hot frothy coffee? <i class="fas fa-mug-hot"></i> A fresh crispy croissant? A real English breakfast? How do you start the day? </h5>
+<h5 class="handwriting">A hot frothy coffee? <i class="fas fa-mug-hot"></i> <br> A fresh crispy croissant? <i class="fas fa-cookie-bite"></i> <br> An English breakfast with bacon and eggs? <i class="fas fa-bacon"></i><i class="fas fa-egg"></i> <br> How do you start the day? <i class="far fa-clock"></i></h5>
         <p>My favorite meal is the breakfast, especially when you can allow yourself to enjoy it and
             kick off the day in this way. And come on, breakfasts can be truly various, creative, seasonal, and tasty at
             the same time. Therefore, I started collecting my recipes and sharing them in the social media
-            (Instagram, Facebook) so you can get proof of the above listed characteristics, get to know me and what
-            I represent.</p>
+            <i class="fab fa-instagram white-pic"></i> <i class="white-pic fab fa-facebook-square white-pic"></i> .</p>
 
-        <p>Where it got started? When I was a university student and studied for my exams, I always had the tv on.
+        <p> <i class="far fa-lightbulb"></i> Where it got started? When I was a university student <i class="fas fa-graduation-cap"></i> and studied for my exams <i class="fas fa-book-reader"></i>, I always had the tv on. <i class="fas fa-tv"></i>
             Not because I wanted to distract my attention on purpose but because in this way, I could make myself
-            believe that it was not all about studying (boring...) but also letting some fun in. This fun were the
+            believe that it was not all about studying (boring...) but also letting some fun in. <i class="far fa-hand-peace"></i> This fun were the
             cooking and baking shows which became my passion straight away.</p>
-        <p>I have always known that one day I would like to start a business where I can be in touch with people,
+        <p><i class="far fa-hand-point-right"></i> I have always known that one day I would like to start a business <i class="fas fa-suitcase"></i> where I can be in touch with people <i class="fas fa-users"></i>,
             use my creative side and skills and basically represent myself.
-            I hope that you will enjoy preparing my recipes as much as I do, and moreover I believe that one day I
-            can also welcome and serve you at my own place.</p>
+            I hope that you will enjoy preparing my recipes as much as I do, and moreover believe that one day I
+            can also welcome and serve you at my own place in Budapest. <i class="fas fa-heart"></i></p>
     </div>
+
 {% endblock %}
