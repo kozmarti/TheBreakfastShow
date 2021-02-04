@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\ImagesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ImagesRepository::class)
+ * @Vich\Uploadable
  */
 class Images
 {
@@ -25,6 +28,14 @@ class Images
     /**
      * @ORM\Column(type="string", length=255)
      */
+
+    /**
+     * @Vich\UploadableField(mapping="meal_file", fileNameProperty="meal")
+     * @var File
+     */
+
+    private $mealFile;
+
     private $ingredient;
 
     /**

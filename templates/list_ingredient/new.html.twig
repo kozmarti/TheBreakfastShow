@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New ListIngredient{% endblock %}
-
 {% block body %}
+    {% include 'home/component/_nav.html.twig' %}
+
+<div class="about-me-bg"></div>
+
+<div class="login-text">
     <h1>Create new ListIngredient</h1>
 
     {{ include('list_ingredient/_form.html.twig') }}
 
     <a href="{{ path('list_ingredient_index') }}">back to list</a>
+</div>
 {% endblock %}
