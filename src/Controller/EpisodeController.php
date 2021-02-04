@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/episode")
  */
@@ -49,12 +50,21 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="episode_show", methods={"GET"})
+     * @Route("/{id}", name="episode_show", methods={"GET","POST"})
      */
-    public function show(Episode $episode): Response
+    public function show(Request $request,Episode $episode): Response
     {
+        $multiplier = $request->request->all();
+        if ($multiplier) {
+            $multiplier=  $multiplier['quantity'];
+        } else {
+            $multiplier=0;
+        }
+
         return $this->render('episode/show.html.twig', [
             'episode' => $episode,
+            'multiplier' => $multiplier,
+
         ]);
     }
 

@@ -7,7 +7,7 @@
 <div class="episode-box">
     <div>
         <div class="handwriting"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
-            <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i>
+            <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i> <br>
             {{episode.recipename }}
         </div>
         <div class="d-flex justify-content-between">
@@ -22,9 +22,17 @@
 
             <div class="d-flex justify-content-around">
                 <div class="m-5"><i class="far fa-clock"></i> {{ episode.preparationtime ? episode.preparationtime|date('H:i:s') : ''  }}</div>
-                <div class="m-5"> <i class="fas fa-users"></i> : {{episode.person }}</div>
+                <div class="m-5"> <i class="fas fa-users"></i> :
+                    {% if multiplier is not same as(0) %}
+
+                    {{multiplier }}
+                    {% else %}
+                        {{episode.person }}
+                    {% endif %}
+
+                </div>
                 <div class="m-5"><i class="fas fa-shopping-cart"></i> Ingredients: </div></div>
-            <div><i class="fas fa-calculator"></i> Calculate ingredients for <input type="number" step="{{ episode.person }}"> persons </div>
+
             <div class="d-flex align-items-center justify-content-between" >
 
             <ul class="d-flex flex-column align-items-start">
@@ -37,14 +45,26 @@
                             {% set i = ingr.subingredient %}
                                     <div class="m-2"> {{ i }} </div>
                         {% endif %}
-                        <li>{{ingr.quantity }}
+                        <li> {% if multiplier is not same as(0) and ingr.quantity is not null%}
+
+                                {{ingr.quantity / episode.person * multiplier }}
+                            {% else %}
+                                {{ingr.quantity }}
+                            {% endif %}
                             {% if ingr.measure.id is defined and ingr.measure.id is not null %}
                                 {{ ingr.measure.name }}
                             {% endif %}
                             {{ingr.ingredient.name }}</li>
 
                     {% else %}
-                    <li>{{ingr.quantity }}
+
+                    <li>
+                        {% if multiplier is not same as(0) and ingr.quantity is not null %}
+
+                                {{ingr.quantity / episode.person * multiplier }}
+                            {% else %}
+                                {{ingr.quantity }}
+                            {% endif %}
                         {% if ingr.measure.id is defined and ingr.measure.id is not null %}
                             {{ ingr.measure.name }}
                         {% endif %}
@@ -56,6 +76,11 @@
             </ul>
                 <img class="medium-photo align-self-end" src="{{episode.images.ingredient}}" alt="k">
             </div>
+            <form class="align-self-end" action="{{ path('episode_show', {'id': episode.id}) }}" method="post">
+            <div class="m-3"> Ingredients for <input class="calc-input m-2" type="number" name="quantity" step="1"> persons </div>
+                <button type="submit" class="calc-button"><i class="fas fa-calculator"></i> calculate!</button>
+
+            </form>
         </div>
 
         </div>

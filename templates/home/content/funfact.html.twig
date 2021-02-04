@@ -2,10 +2,15 @@
 
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
+
+    <div class="about-me-bg"></div>
+
+    <div class="fact-box">
+
     <div class="container d-flex flex-column align-items-center funfact-container">
     <h1> <i class="far fa-lightbulb"></i>  Did you know ?<a class="random-button" href="{{ path('fun_fact') }}"> RandomFact </a> </h1>
         <img class="fact-photo" src="{{ random_fact.image }}" alt="">
 
     </div>
-
+    </div>
 {% endblock %}
