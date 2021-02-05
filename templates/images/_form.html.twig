@@ -1,4 +1,7 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_row(form.episode) }}
+    {{ form_row(form.mealFile) }}
+{{ form_row(form.ingredientFile) }}
+{{ form_row(form.ownerphotoFile) }}
+    <button class="login-button m-3">Done</button>
 {{ form_end(form) }}

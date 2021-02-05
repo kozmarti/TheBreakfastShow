@@ -18,8 +18,8 @@
         <div>{{episode.recipename }}</div>
 
             </div>
-            <img class="small-photo" src="{{episode.images.ownerphoto}}" alt="k">
-
+            {#  <img class="small-photo" src="{{episode.images.ownerphoto}}" alt="k">  #}
+            <img class="small-photo" src="/uploads/{{ episode.images.ownerphoto }}" alt="{{ episode.recipename }}">
         </div>
             {% endfor %}
 

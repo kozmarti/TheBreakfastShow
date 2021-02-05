@@ -9,6 +9,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ImagesRepository::class)
+ * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
  */
 class Images
@@ -25,6 +26,7 @@ class Images
      */
     private $meal;
 
+
     /**
      * @Vich\UploadableField(mapping="meal_file", fileNameProperty="meal")
      * @var File
@@ -33,8 +35,23 @@ class Images
     private $mealFile;
 
     /**
+     * @Vich\UploadableField(mapping="ingredient_file", fileNameProperty="ingredient")
+     * @var File
+     */
+
+    private $ingredientFile;
+
+    /**
+     * @Vich\UploadableField(mapping="ownerphoto_file", fileNameProperty="ownerphoto")
+     * @var File
+     */
+
+    private $ownerphotoFile;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
+
     private $ingredient;
 
     /**
@@ -47,6 +64,11 @@ class Images
      * @ORM\JoinColumn(nullable=false)
      */
     private $episode;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
 
     public function getId(): ?int
     {
@@ -100,4 +122,86 @@ class Images
 
         return $this;
     }
+
+    public function getMealFile(): ?File
+
+    {
+
+        return $this->mealFile;
+
+    }
+
+    public function getIngredientFile(): ?File
+
+    {
+
+        return $this->ingredientFile;
+
+    }
+
+    public function getOwnerphotoFile(): ?File
+
+    {
+
+        return $this->ownerphotoFile;
+
+    }
+    public function setMealFile(File $image = null):Images
+
+    {
+
+        $this->mealFile = $image;
+
+        return $this;
+
+    }
+
+    public function setIngredientFile(File $image = null):Images
+
+    {
+
+        $this->ingredientFile = $image;
+
+        return $this;
+
+    }
+
+    public function setOwnerphotoFile(File $image = null):Images
+
+    {
+
+        $this->ownerphotoFile = $image;
+
+        return $this;
+
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+    /**
+     * Gets triggered only on insert
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->updatedAt = new \DateTime();
+    }/**
+ * Gets triggered only on update
+ * @ORM\PreUpdate
+ */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+
 }

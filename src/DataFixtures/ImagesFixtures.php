@@ -35,6 +35,7 @@ class ImagesFixtures extends Fixture implements ContainerAwareInterface, Depende
             $image->setMeal($data['meal']);
             $image->setIngredient($data['ingredient']);
             $image->setOwnerphoto($data['ownerphoto']);
+            $image->setUpdatedAt(new \DateTime());
             $image->setEpisode($this->getReference('episode_' . $data['episode_title']));
             $manager->persist($image);
 

@@ -12,7 +12,7 @@
         </div>
         <div class="d-flex justify-content-between">
         <div >
-            <img class="meal-photo m-5" src="{{episode.images.meal}}" alt="k">
+            <img class="meal-photo m-5" src="/uploads/{{episode.images.meal}}" alt="k">
         </div>
 
 
@@ -74,7 +74,7 @@
 
                 {% endfor %}
             </ul>
-                <img class="medium-photo align-self-end" src="{{episode.images.ingredient}}" alt="k">
+                <img class="medium-photo align-self-end" src="/uploads/{{episode.images.ingredient}}" alt="k">
             </div>
             <form class="align-self-end" action="{{ path('episode_show', {'id': episode.id}) }}" method="post">
             <div class="m-3"> Ingredients for <input class="calc-input m-2" type="number" name="quantity" step="1"> persons </div>
@@ -93,10 +93,11 @@
 
            </div>
     <a href="{{ path('season_show', {'id': episode.season.id}) }}">Back to Season {{ episode.season.number}}. : {{  episode.season.title }}</a>
-
-    {# <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
+{% if app.user %}
+    <a class="login-button m-3" href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
 
     {{ include('episode/_delete_form.html.twig') }}
-    #}
+
+    {% endif %}
 </div>
 {% endblock %}

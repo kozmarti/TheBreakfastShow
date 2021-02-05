@@ -39,7 +39,7 @@ class ImagesController extends AbstractController
             $entityManager->persist($image);
             $entityManager->flush();
 
-            return $this->redirectToRoute('images_index');
+            return $this->redirectToRoute('recipes_home');
         }
 
         return $this->render('images/new.html.twig', [

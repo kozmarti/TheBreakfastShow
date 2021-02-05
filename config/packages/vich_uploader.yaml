@@ -2,6 +2,12 @@ vich_uploader:
     db_driver: orm
 
     mappings:
-        products:
-            uri_prefix: /images/photos
+        meal_file:
+            uri_prefix: /uploads
+            upload_destination: '%upload_directory%'
+        ingredient_file:
+            uri_prefix: /uploads
+            upload_destination: '%upload_directory%'
+        ownerphoto_file:
+            uri_prefix: /uploads
             upload_destination: '%upload_directory%'

@@ -40,7 +40,7 @@ class EpisodeController extends AbstractController
             $entityManager->persist($episode);
             $entityManager->flush();
 
-            return $this->redirectToRoute('episode_index');
+            return $this->redirectToRoute('list_ingredient_new');
         }
 
         return $this->render('episode/new.html.twig', [
@@ -79,7 +79,7 @@ class EpisodeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('episode_index');
+            return $this->redirectToRoute('recipes_home');
         }
 
         return $this->render('episode/edit.html.twig', [

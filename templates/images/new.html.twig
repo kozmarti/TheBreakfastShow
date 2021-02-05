@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Images{% endblock %}
-
 {% block body %}
-    <h1>Create new Images</h1>
+    {% include 'home/component/_nav.html.twig' %}
+
+<div class="about-me-bg"></div>
+
+<div class="login-text">
+    <h1>3. Add images </h1>
 
     {{ include('images/_form.html.twig') }}
 
-    <a href="{{ path('images_index') }}">back to list</a>
+</div>
 {% endblock %}
