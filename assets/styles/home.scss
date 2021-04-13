@@ -1,164 +1,8 @@
 body{
   animation: fadein 2s;
-  /*background: url("//images.unsplash.com/photo-1461010083959-8a5727311252?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1311&q=80");
-  /*background: url("https://images.unsplash.com/photo-1507980062492-714282f31ee0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
-  /*background: url("https://images.unsplash.com/photo-1503919483171-9ffc1debc390?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
-  /*background: url("https://images.unsplash.com/photo-1604537466573-5e94508fd243?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80");
-  background: url("https://images.unsplash.com/photo-1483664852095-d6cc6870702d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80");*/
-  /*background-attachment: fixed;
-  background-size: cover;
-  background-position: 50% 35%;*/
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to top, $yellow,$orange);
+  height: 100vh;
 }
-body, html {
-  height: 100%;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.about-me-bg {
-  background-image: url("/public/uploads/S1E3_3.jpg");
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-hr {
-  background-color: white;
-}
-.about-me-text {
-  font-family: 'Raleway', sans-serif !important;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.4);
-  color: white;
-  font-weight: bold;
-  border: 3px solid #f1f1f1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 50%;
-  padding: 20px;
-  text-align: center;
-  & a {
-    color:white;
-  }
-  &:hover {
-    color:white;
-  }
-}
-
-
-.login-text {
-  font-family: 'Raleway', sans-serif !important;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.4);
-  color: white;
-  font-weight: bold;
-  border: 3px solid #f1f1f1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 30%;
-  padding: 20px;
-  text-align: center;
-  & a {
-    color:white;
-  }
-  &:hover {
-    color:white;
-  }
-}
-
-.season-box {
-  font-family: 'Raleway', sans-serif !important;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.4);
-  color: white;
-  font-weight: bold;
-  border: 3px solid #f1f1f1;
-  position: absolute;
-  top: 150px;
-  left: 100px;
-  z-index: 2;
-  width: 30%;
-  padding: 20px;
-  text-align: center;
-  & a {
-    color:white;
-  }
-  &:hover {
-    color:white;
-  }
-}
-
-.fact-box {
-  font-family: 'Raleway', sans-serif !important;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.4);
-  color: white;
-  font-weight: bold;
-  border: 3px solid #f1f1f1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 60%;
-  padding: 10px;
-  text-align: center;
-  & a {
-    color:white;
-  }
-  &:hover {
-    color:white;
-  }
-
-
-}
-
-.episode-box {
-  font-family: 'Raleway', sans-serif !important;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.4);
-  color: white;
-  font-weight: bold;
-  border: 3px solid #f1f1f1;
-  position: absolute;
-  top: 150px;
-  left: 100px;
-  z-index: 2;
-  width: 70%;
-  padding: 20px;
-  text-align: center;
-  & a {
-    color:white;
-  }
-  &:hover {
-    color:white;
-  }
-}
-
-
-
-.handwriting{
-    font-family: 'Raleway', sans-serif !important;
-  font-size: 2.3em;
-  padding: 20px;
-}
-
-
-.white-pic{
-  color: white !important;
-  font-size: 1em !important;
-}
-
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -167,32 +11,34 @@ hr {
   position: fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-}
-.home-content {
-  position: fixed;
-bottom: 0px;
-  left: -100px;
-  color: #f1f1f1;
   width: 100%;
-  padding: 30px;
-
+  height: 100%;
 }
 
+.white-logo{
+  position: fixed;
+  width: 400px;
+  height: auto;
+  top:10px;
+  z-index: 1000;
+}
+.home-bg{
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to right top,$orange, $yellow);
+  height: 100vh;
+}
 .home-button {
   font-family: 'Pacifico', cursive;
-  height: 150px;
-  width: 200px;
+  height: 100px;
+  width: 150px;
   position: fixed;
   top: 50%;
   left: 50%;
   background-color: $dark-blue;
   margin-top: 200px;
-  margin-left: -100px;
+  margin-left: -75px;
   color:white;
   border:none;
-  font-size: 3em;
+  font-size: 2em;
   border-radius: 5px;
   animation: appear 9s;
   &:hover {
@@ -209,22 +55,46 @@ bottom: 0px;
   }
 }
 
+
+
 @keyframes appear {
   0% {opacity: 0}
   80% {opacity: 0}
   100% {opacity: 1}
 }
 
-.calc-button {
-  background-color: black;
-  color: white;
-  font-family: 'Pacifico', cursive;
-  border-radius: 10px;
-  padding: 15px;
-  border: none;
-  font-size: 1.3em;
-}
 
-.calc-input {
-  width: 50px;
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+//@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+  .home-button {
+    font-family: 'Pacifico', cursive;
+    height: 50px;
+    width: 75px;
+    font-size: 1em;
+    margin-top: 150px;
+    margin-left: -37px;
+
+  }
+  .white-logo {
+    position: fixed;
+    width: 400px;
+    height: auto;
+    top: 10px;
+    top: 0;
+    left: 50%;
+    margin-left: -200px;
+  }
 }
+// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+//@media (min-width: 1200px) { ... }
+
+

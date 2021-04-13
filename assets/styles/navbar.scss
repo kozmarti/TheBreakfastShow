@@ -1,64 +1,33 @@
-.navigation {
-  background-color: $navbar;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 20px;
+.navbar-logo{
+  height: 100px;
+  width: auto;
+  transform: scale(2.5)
 }
-
-.logo-image {
-  height: 250px;
-  position: absolute;
-  left: -100px;
-  top: -50px;
-}
-
-.fab {
-  font-size: 2em;
-  color:black;
+.nav-link {
+  color: $light-brown !important;
+  text-wrap: none;
+  padding: 15px !important;
   &:hover{
-    color: $button;
+    color: $dark-brown !important;
+    border-bottom: 5px solid $dark-brown;
   }
 }
 
-.insta-icon {
-  position: absolute;
-  right:20px;
-  top:20px;
+.active a{
+  color: $dark-brown !important;
+  border-bottom: 5px solid $dark-brown;
 }
 
-.fb-icon {
-  position: absolute;
-  right:70px;
-  top:20px;
-}
-
-.navbar-buttons li, .login-button {
-  font-family: 'Pacifico', cursive;
-  font-size: 2em;
-  color: white;
-  list-style: none;
-  padding: 10px;
-  margin: 0px 50px;
-  background-color: $dark-blue;
-  border-radius: 10px;
-  border: none;
-  &:hover {
-    background-color: $darker-blue;
-    transition: 2s;
-    cursor: pointer;
+@media (max-width: 1200px) {
+  .navbar-logo {
+    height: 70px;
+    width: auto;
+    transform: scale(2)
   }
-  & a {
-    text-decoration: none;
-    color:white;
-    &:hover{
-      text-decoration: none;
-      color:white;
-    }
+  .navbar-nav{
+    font-size: 18px !important;
   }
-}
-
-.navbar-buttons {
-  display: flex;
-  justify-content: space-between;
-}
+  .nav-link {
+    padding: 10px !important;
+  }
+  }

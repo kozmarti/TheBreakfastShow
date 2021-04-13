@@ -1,11 +1,18 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="{{ asset('build/images/logo/002-croissant.png') }}" />
+    <title>{% block title %}The Breakfast Show{% endblock %}</title>
+    {% block stylesheets %} {{ encore_entry_link_tags('app') }}{% endblock %}
+    {% block javascripts %}   {{ encore_entry_script_tags('app') }}{% endblock %}
+</head>
+<body class="home-bg">
     <video autoplay muted id="myVideo" >
         <source src="{{ asset('build/images/tbsvideo.mp4') }}" type="video/mp4" >
     </video>
-<div class="home-content">
-    <h1> <img src="{{ asset('build/images/logo/logo_white.png') }}" alt=""></h1>
+    <img class="white-logo" src="{{ asset('build/images/logo/logo_white.png') }}" alt="tbf-logo">
     <a href="{{ path("welcome") }}"><button class="home-button"> enter </button></a>
-</div>
-{%  endblock %}
+</body>
+</html>

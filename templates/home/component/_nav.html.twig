@@ -1,8 +1,9 @@
-<nav class="navigation">
+
+    {#
     <a href="{{ path('home') }}"><img class="logo-image" src="{{ asset('build/images/logo/logo_black.png') }}" alt="logo"></a>
     <ul class="navbar-buttons">
         <li class="navigation-button"><a href="{{ path('welcome') }}">About me</a></li>
-        {# <li class="navigation-button"><a href="">About you</a></li>  #}
+        <li class="navigation-button"><a href="">About you</a></li>
         <li class="navigation-button"><a href="{{ path('recipes_home') }}">Recipes</a></li>
         <li class="navigation-button"><a href="{{ path('fun_fact') }}">Fun fact</a></li>
         {% if app.user %}
@@ -14,7 +15,37 @@
     </ul>
 
     <a class="insta-icon" href="https://www.instagram.com/the_breakfast_show/" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a class="fb-icon" href="https://www.facebook.com/thebreakfastshow1/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+    <a class="fb-icon" href="{{ path('app_login') }}" ><i class="fab fa-facebook-square"></i></a>
+    #}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <a class="navbar-brand" href="{{ path('home') }}"> <img class="navbar-logo" src="{{ asset('build/images/logo/logo_orange.png') }}" alt="tbf-logo"></a>
 
-</nav>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 handwriting medium-text">
+                <li class="nav-item active">
+                    <a class="nav-link light-text active" href="#">About me <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link light-text" href="{{ path('home') }}">About you</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link light-text" href="{{ path('recipes_home') }}">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link light-text" href="{{ path('fun_fact') }}">Fun facts</a>
+                </li>
+
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <a class="insta-icon" href="https://www.instagram.com/the_breakfast_show/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a class="fb-icon" href="{{ path('app_login') }}" ><i class="fab fa-facebook-square"></i></a>
+        </div>
+    </nav>

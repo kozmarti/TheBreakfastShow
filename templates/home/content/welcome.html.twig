@@ -2,9 +2,10 @@
 
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
-   <div class="about-me-bg"></div>
+   <div class="introduction-container">
 
-    <div class="about-me-text">
+    <div class="use-shadow introduction">
+        <img class="introduction-logo" src="{{ asset('build/images/logo/logo_orange.png') }}" alt="">
 <h5 class="handwriting">A hot frothy coffee? <i class="fas fa-mug-hot"></i> <br> A fresh crispy croissant? <i class="fas fa-cookie-bite"></i> <br> An English breakfast with bacon and eggs? <i class="fas fa-bacon"></i><i class="fas fa-egg"></i> <br> How do you start the day? <i class="far fa-clock"></i></h5>
         <p>My favorite meal is the breakfast, especially when you can allow yourself to enjoy it and
             kick off the day in this way. And come on, breakfasts can be truly various, creative, seasonal, and tasty at
@@ -20,5 +21,5 @@
             I hope that you will enjoy preparing my recipes as much as I do, and moreover believe that one day I
             can also welcome and serve you at my own place in Budapest. <i class="fas fa-heart"></i></p>
     </div>
-
+   </div>
 {% endblock %}
