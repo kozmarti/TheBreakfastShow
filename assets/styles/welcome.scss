@@ -1,14 +1,28 @@
 .introduction{
-  width: 400px;
+  width: 700px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
 }
 
-.introduction-container{
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-}
 
 .introduction-logo {
   width: 400px;
   height: auto;
+}
+
+.introduction-images {
+  margin: 10px;
+  object-fit: cover;
+}
+
+
+.disappear-effect {
+  opacity: 1;
+  transition: 2s opacity linear;
+}
+
+.appear-effect {
+  opacity: 0;
+  transition: 2s opacity linear;
 }

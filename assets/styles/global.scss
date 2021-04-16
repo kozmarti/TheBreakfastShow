@@ -10,26 +10,50 @@
     color: $light-brown;
 }
 
+
 .large-text{
-   font-size: 36px;
-}
-
-.medium-text{
-    font-size: 24px;
-}
-
-.small-text {
     font-size: 18px;
 }
 
+.small-text {
+    font-size: 12px;
+}
 
 .use-shadow {
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+
 }
+
 
 .image-shadow {
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 10px;
 }
+
+
+.large-image {
+    width: 400px;
+    height: 400px;
+
+}
+
+.small-image {
+    width: 300px;
+    height: 300px;
+
+}
+
+.wide-container-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.wide-container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1400px;
+}
+

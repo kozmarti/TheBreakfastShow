@@ -36,7 +36,17 @@ class HomeController extends AbstractController
     public function welcome(ImagesRepository $imagesRepository): Response
     {
         $images=$imagesRepository->findAll();
-        return $this->render('home/content/welcome.html.twig', ['images' => $images]);
+
+        $ownerPhotos=[];
+        foreach ($images as $image){
+            array_push($ownerPhotos, $image->getOwnerphoto());
+
+
+        }
+        shuffle($ownerPhotos);
+        $countOwnerPhotos = count($ownerPhotos);
+        return $this->render('home/content/welcome.html.twig', ['images' => $ownerPhotos,'count_photos' =>$countOwnerPhotos,
+            'aboutme' => true,  'aboutyou' => false,   'funfacts' => false,  'recipes' => false]);
     }
 
     /**
@@ -47,6 +57,7 @@ class HomeController extends AbstractController
         $funfacts=$funFactRepository->findAll();
         $fact= $funfacts[array_rand($funfacts)];
 
-        return $this->render('home/content/funfact.html.twig', ['random_fact' => $fact]);
+        return $this->render('home/content/funfact.html.twig', ['random_fact' => $fact,
+        'aboutme' => false,  'aboutyou' => false,   'funfacts' => true,  'recipes' => false]);
     }
 }

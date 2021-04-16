@@ -1,21 +1,30 @@
 .navbar-logo{
   height: 100px;
   width: auto;
-  transform: scale(2.5)
+  transform: scale(2)
 }
 .nav-link {
   color: $light-brown !important;
   text-wrap: none;
-  padding: 15px !important;
+  padding: 15px 45px !important;
   &:hover{
     color: $dark-brown !important;
-    border-bottom: 5px solid $dark-brown;
+    border-bottom: 3px solid $dark-brown;
   }
 }
 
+.navbar {
+  padding: 0 !important;
+  height: 90px;
+}
+
 .active a{
+  z-index: 1000;
   color: $dark-brown !important;
-  border-bottom: 5px solid $dark-brown;
+  border-bottom: 3px solid $dark-brown;
+  &:hover{
+    cursor: default;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -31,3 +40,20 @@
     padding: 10px !important;
   }
   }
+
+.navbar-expand-lg .navbar-collapse{
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+.fb-logo, .insta-logo {
+  width: 30px !important;
+  height: auto;
+  margin: 5px;
+}
+
+
+.bg-white {
+  background-color: white;
+}

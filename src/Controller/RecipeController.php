@@ -33,7 +33,8 @@ class RecipeController extends AbstractController
     {
         $seasons= $seasonRepository->findAll();
         $episodes = $episodeRepository->findAll();
-        return $this->render('home/content/recipes.html.twig',[ 'seasons' => $seasons, 'episodes' => $episodes]);
+        return $this->render('home/content/recipes.html.twig',[ 'seasons' => $seasons, 'episodes' => $episodes,
+            'aboutme' => false,  'aboutyou' => false,   'funfacts' => false,  'recipes' => true]);
     }
 
 

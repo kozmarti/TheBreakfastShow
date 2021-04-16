@@ -2,8 +2,17 @@
 
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
-   <div class="introduction-container">
+<div class="wide-container-wrapper">
+   <div class="wide-container">
 
+       {% for i in 0..3 %}
+
+           <div class="1size3-flex-item">
+       <img class="{% if loop.index is even%} small-image{% else%} large-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="">
+           </div>
+       {% endfor %}
+
+       <div class="1size3-flex-item">
     <div class="use-shadow introduction">
         <img class="introduction-logo" src="{{ asset('build/images/logo/logo_orange.png') }}" alt="">
 <h5 class="handwriting">A hot frothy coffee? <i class="fas fa-mug-hot"></i> <br> A fresh crispy croissant? <i class="fas fa-cookie-bite"></i> <br> An English breakfast with bacon and eggs? <i class="fas fa-bacon"></i><i class="fas fa-egg"></i> <br> How do you start the day? <i class="far fa-clock"></i></h5>
@@ -21,5 +30,68 @@
             I hope that you will enjoy preparing my recipes as much as I do, and moreover believe that one day I
             can also welcome and serve you at my own place in Budapest. <i class="fas fa-heart"></i></p>
     </div>
+    </div>
+       {% for i in 4..7 %}
+        <div class="1size3-flex-item">
+           <img class="{% if loop.index is even%} large-image{% else%}small-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="">
+        </div>
+       {% endfor %}
+
+
+
    </div>
+</div>
 {% endblock %}
+
+ {% block javascripts %}
+<script>
+
+const changingImages = document.getElementsByClassName("image-cycle");
+
+let imageDataBase = [];
+{% for i in 8..count_photos - 1 %}
+        imageDataBase.push("/uploads/{{ images[i] }}");
+{% endfor %}
+order = [0,1,2,4,7,6,5,3]
+console.log(imageDataBase);
+setInterval(myTimer, 8000);
+first_change_index = 0;
+second_change_index = 4;
+function myTimer() {
+    let first_clear = changingImages[order[first_change_index]].src;
+    let second_clear = changingImages[order[second_change_index]].src
+    changingImages[order[first_change_index]].classList.remove("appear-effect");
+    changingImages[order[second_change_index]].classList.remove("appear-effect");
+    changingImages[order[first_change_index]].classList.add("disappear-effect");
+    changingImages[order[second_change_index]].classList.add("disappear-effect");
+
+
+    setTimeout(function(){ changingImages[order[first_change_index]].src=imageDataBase[0]; }, 2000);
+    setTimeout(function(){changingImages[order[second_change_index]].src=imageDataBase[1];}, 2000);
+    setTimeout(function(){changingImages[order[first_change_index]].classList.remove("disappear-effect"); changingImages[order[first_change_index]].classList.add("appear-effect"); changingImages[order[first_change_index]].src=imageDataBase[0]; }, 1000);
+    setTimeout(function(){changingImages[order[second_change_index]].classList.remove("disappear-effect");changingImages[order[second_change_index]].classList.add("appear-effect");changingImages[order[second_change_index]].src=imageDataBase[1];}, 1000);
+    imageDataBase.shift();
+    imageDataBase.shift();
+    imageDataBase.push(first_clear);
+    imageDataBase.push(second_clear);
+    console.log(imageDataBase);
+    if (first_change_index > 6 ) {
+        first_change_index = 0;
+        second_change_index += 1;
+    }
+    else if (second_change_index > 6 ){
+        first_change_index += 1;
+        second_change_index =0;
+    }else {
+        first_change_index += 1;
+        second_change_index += 1;
+    }
+
+}
+
+
+
+
+
+</script>
+ {% endblock %}
