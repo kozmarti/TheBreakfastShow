@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
+    {% include 'home/content/recipes.html.twig' %}
 <div class="about-me-bg"></div>
     <div class="about-me-bg"></div>
     <div class="about-me-bg"></div>
-<div class="season-box">
+
 
     <h1 class="handwriting">Season {{ season.number }}. :  {{ season.title  }}</h1>
-
+    <div class="wide-container-wrapper">
+        <div class="wide-container">
     {% for episode in episodes %}
-        <hr>
+
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-column justify-content-around">
             <div><a href="{{ path('episode_show', {'id': episode.id}) }}"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
@@ -18,11 +20,11 @@
         <div>{{episode.recipename }}</div>
 
             </div>
-            {#  <img class="small-photo" src="{{episode.images.ownerphoto}}" alt="k">  #}
-            <img class="small-photo" src="/uploads/{{ episode.images.ownerphoto }}" alt="{{ episode.recipename }}">
+            <img class="small-image" src="/uploads/{{ episode.images.ownerphoto }}" alt="Image {{ episode.recipename }}">
         </div>
             {% endfor %}
-
+        </div>
+</div>
     <hr>
     <a href="{{ path('recipes_home') }}">Back to seasons</a>
 {#
@@ -30,5 +32,5 @@
 
     {{ include('season/_delete_form.html.twig') }}
 #}
-</div>
+
 {% endblock %}

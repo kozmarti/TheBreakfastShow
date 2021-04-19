@@ -43,13 +43,15 @@ class SeasonController extends AbstractController
     /**
      * @Route("/{id}", name="season_show", methods={"GET"})
      */
-    public function show(Season $season, EpisodeRepository $episodeRepository): Response
+    public function show(Season $season, EpisodeRepository $episodeRepository, SeasonRepository $seasonRepository): Response
     {
         $episodes=$episodeRepository->findBy(['season'=>$season]);
+        $seasons = $seasonRepository->findAll();
         return $this->render('season/show.html.twig', [
             'season' => $season,
-            'episodes' => $episodes
-        ]);
+            'episodes' => $episodes,
+            'seasons' => $seasons,
+            'aboutme' => false,  'aboutyou' => false,   'funfacts' => false,  'recipes' => true]);
     }
 
     /**

@@ -44,6 +44,9 @@
 {% endblock %}
 
  {% block javascripts %}
+
+         {{ encore_entry_script_tags('app') }}
+
 <script>
 
 const changingImages = document.getElementsByClassName("image-cycle");
@@ -54,7 +57,7 @@ let imageDataBase = [];
 {% endfor %}
 order = [0,1,2,4,7,6,5,3]
 console.log(imageDataBase);
-setInterval(myTimer, 8000);
+setInterval(myTimer, 6000);
 first_change_index = 0;
 second_change_index = 4;
 function myTimer() {
@@ -64,12 +67,11 @@ function myTimer() {
     changingImages[order[second_change_index]].classList.remove("appear-effect");
     changingImages[order[first_change_index]].classList.add("disappear-effect");
     changingImages[order[second_change_index]].classList.add("disappear-effect");
-
-
-    setTimeout(function(){ changingImages[order[first_change_index]].src=imageDataBase[0]; }, 2000);
-    setTimeout(function(){changingImages[order[second_change_index]].src=imageDataBase[1];}, 2000);
-    setTimeout(function(){changingImages[order[first_change_index]].classList.remove("disappear-effect"); changingImages[order[first_change_index]].classList.add("appear-effect"); changingImages[order[first_change_index]].src=imageDataBase[0]; }, 1000);
-    setTimeout(function(){changingImages[order[second_change_index]].classList.remove("disappear-effect");changingImages[order[second_change_index]].classList.add("appear-effect");changingImages[order[second_change_index]].src=imageDataBase[1];}, 1000);
+    console.log("before");
+    setTimeout(function(){ changingImages[order[first_change_index]].src=imageDataBase[0];  console.log("first 2 s"); }, 4000);
+    setTimeout(function(){changingImages[order[second_change_index]].src=imageDataBase[1]; console.log("second 2 s");}, 4000);
+    setTimeout(function(){changingImages[order[first_change_index]].classList.add("appear-effect");   }, 2000);
+    setTimeout(function(){changingImages[order[second_change_index]].classList.add("appear-effect");}, 2000);
     imageDataBase.shift();
     imageDataBase.shift();
     imageDataBase.push(first_clear);
@@ -88,10 +90,6 @@ function myTimer() {
     }
 
 }
-
-
-
-
 
 </script>
  {% endblock %}
