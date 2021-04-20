@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Repository\ImagesRepository;
 
 use App\Repository\FunFactRepository;
+use App\Repository\IngredientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,12 +53,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/funfact", name="fun_fact")
      */
-    public function funfact(FunFactRepository $funFactRepository): Response
+    public function funfact(FunFactRepository $funFactRepository, IngredientRepository $ingredientRepository): Response
     {
         $funfacts=$funFactRepository->findAll();
         $fact= $funfacts[array_rand($funfacts)];
 
-        return $this->render('home/content/funfact.html.twig', ['random_fact' => $fact,
+
+        return $this->render('home/content/funfact.html.twig', ['random_fact' => $fact, 'actors' => $funfacts,
         'aboutme' => false,   'funfacts' => true,  'recipes' => false,  'login' => false]);
     }
 }

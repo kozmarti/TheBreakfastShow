@@ -24,6 +24,7 @@ class FunFactFixtures extends Fixture implements ContainerAwareInterface
 
         foreach ( $datas as $data) {
             $measure = new FunFact();
+            $measure->setName(substr((substr($data['image'],22)),0,-4));
             $measure->setImage($data['image']);
             $manager->persist($measure);
         }
