@@ -46,7 +46,7 @@ class HomeController extends AbstractController
         shuffle($ownerPhotos);
         $countOwnerPhotos = count($ownerPhotos);
         return $this->render('home/content/welcome.html.twig', ['images' => $ownerPhotos,'count_photos' =>$countOwnerPhotos,
-            'aboutme' => true,  'aboutyou' => false,   'funfacts' => false,  'recipes' => false]);
+            'aboutme' => true,   'funfacts' => false,  'recipes' => false, 'login' => false ]);
     }
 
     /**
@@ -58,6 +58,6 @@ class HomeController extends AbstractController
         $fact= $funfacts[array_rand($funfacts)];
 
         return $this->render('home/content/funfact.html.twig', ['random_fact' => $fact,
-        'aboutme' => false,  'aboutyou' => false,   'funfacts' => true,  'recipes' => false]);
+        'aboutme' => false,   'funfacts' => true,  'recipes' => false,  'login' => false]);
     }
 }

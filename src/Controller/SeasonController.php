@@ -51,7 +51,7 @@ class SeasonController extends AbstractController
             'season' => $season,
             'episodes' => $episodes,
             'seasons' => $seasons,
-            'aboutme' => false,  'aboutyou' => false,   'funfacts' => false,  'recipes' => true]);
+            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false]);
     }
 
     /**
