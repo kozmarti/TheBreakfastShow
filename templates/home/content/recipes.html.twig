@@ -1,6 +1,6 @@
     {% for season in seasons %}
       <div>
-          <a href="{{ path('season_show', {'id': season.id}) }}">Season {{season.number }}. :
+          <a href="{{ path('season_show', {'slug': season.slug}) }}">Season {{season.number }}. :
             {{season.title }}
           </a>
       </div>

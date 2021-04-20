@@ -25,6 +25,7 @@ class SeasonFixtures extends Fixture implements ContainerAwareInterface
             $season = new Season();
             $season->setTitle($data['title']);
             $season->setNumber((int)$data['number']);
+            $season->setSlug('season-'.$data['number'].'-'.$data['title']);
             $manager->persist($season);
             $this->addReference('season_'.$i, $season);
             $i++;

@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/season")
@@ -41,7 +42,8 @@ class SeasonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="season_show", methods={"GET"})
+     * @Route("/{slug}", name="season_show", methods={"GET"})
+     * @ParamConverter("season", options={"mapping": {"slug": "slug"}})
      */
     public function show(Season $season, EpisodeRepository $episodeRepository, SeasonRepository $seasonRepository): Response
     {
