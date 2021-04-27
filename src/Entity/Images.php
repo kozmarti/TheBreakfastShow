@@ -23,6 +23,7 @@ class Images
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $meal;
 
@@ -50,12 +51,14 @@ class Images
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ORM\JoinColumn(nullable=true)
      */
 
     private $ingredient;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $ownerphoto;
 
@@ -80,7 +83,7 @@ class Images
         return $this->meal;
     }
 
-    public function setMeal(string $meal): self
+    public function setMeal(?string $meal): self
     {
         $this->meal = $meal;
 
@@ -92,7 +95,7 @@ class Images
         return $this->ingredient;
     }
 
-    public function setIngredient(string $ingredient): self
+    public function setIngredient(?string $ingredient): self
     {
         $this->ingredient = $ingredient;
 
@@ -104,7 +107,7 @@ class Images
         return $this->ownerphoto;
     }
 
-    public function setOwnerphoto(string $ownerphoto): self
+    public function setOwnerphoto(?string $ownerphoto): self
     {
         $this->ownerphoto = $ownerphoto;
 

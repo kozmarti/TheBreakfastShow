@@ -27,7 +27,7 @@
                 <td>{{ episode.preparationtime ? episode.preparationtime|date('H:i:s') : '' }}</td>
                 <td>{{ episode.person }}</td>
                 <td>
-                    <a href="{{ path('episode_show', {'id': episode.id}) }}">show</a>
+                    <a href="{{ path('episode_show', {'slug': episode.slug}) }}">show</a>
                     <a href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
                 </td>
             </tr>

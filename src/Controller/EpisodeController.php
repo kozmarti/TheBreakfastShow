@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Episode;
+use App\Entity\Images;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
 use App\Service\Slug;
