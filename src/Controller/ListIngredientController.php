@@ -45,6 +45,7 @@ class ListIngredientController extends AbstractController
         return $this->render('list_ingredient/new.html.twig', [
             'list_ingredient' => $listIngredient,
             'form' => $form->createView(),
+            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false
         ]);
     }
 

@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Extra\Markdown\MarkdownExtension;
-
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends AbstractController
 
@@ -32,7 +32,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/home", name="welcome")
+     * @Route("/{_locale}/home", name="welcome")
      */
     public function welcome(ImagesRepository $imagesRepository): Response
     {
@@ -47,7 +47,7 @@ class HomeController extends AbstractController
         shuffle($ownerPhotos);
         $countOwnerPhotos = count($ownerPhotos);
         return $this->render('home/content/welcome.html.twig', ['images' => $ownerPhotos,'count_photos' =>$countOwnerPhotos,
-            'aboutme' => true,   'funfacts' => false,  'recipes' => false, 'login' => false ]);
+            'aboutme' => true,   'funfacts' => false,  'recipes' => false, 'login' => false]);
     }
 
     /**
@@ -62,4 +62,5 @@ class HomeController extends AbstractController
         return $this->render('home/content/funfact.html.twig', ['random_fact' => $fact, 'actors' => $funfacts,
         'aboutme' => false,   'funfacts' => true,  'recipes' => false,  'login' => false]);
     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Images;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,10 +14,6 @@ class ImagesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-
-            ->add('episode',null, ['choice_label' => 'title'])
-
             ->add('mealFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
@@ -35,7 +32,6 @@ class ImagesType extends AbstractType
                 'download_uri' => true, // not mandatory, default is true
 
             ])
-
         ;
     }
 

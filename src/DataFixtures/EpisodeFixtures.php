@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Season;
 use App\Entity\Episode;
+use App\Service\Slug;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -13,6 +14,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class EpisodeFixtures extends Fixture implements ContainerAwareInterface, DependentFixtureInterface
 {
     private $container;
+    private  $slug;
+
+    public function __construct(
+        Slug $slug
+    )
+    {
+        $this->slug = $slug;
+    }
+
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
@@ -39,12 +49,10 @@ class EpisodeFixtures extends Fixture implements ContainerAwareInterface, Depend
             $episode->setPreparationtime(new \DateTime($data['preparationtime']));
             $episode->setPerson((int)$data['person']);
             $episode->setSeason($this->getReference('season_' . $data['season_number']));
+            $episode->setSlug($this->slug->slugify($data['title']));
             $manager->persist($episode);
             $this->addReference('episode_'.$data['title'], $episode);
-
-
         }
-
         $manager->flush();
     }
 }

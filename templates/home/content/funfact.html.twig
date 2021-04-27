@@ -10,14 +10,16 @@
     <div class="container d-flex flex-column align-items-center funfact-container">
     <h1> <i class="far fa-lightbulb"></i>  Did you know ?<a class="random-button" href="{{ path('fun_fact') }}"> RandomFact </a> </h1>
         <img class="small-image fact-photo" src="{{ random_fact.image }}" alt="">
-<ul>
+
+
+
+        <div class="box">
+<ul class="actors-list">
     {% for actor in actors %}
-    <li>{{ actor.name }}</li>
+    <li class="item-{{ loop.index }}">{{ actor.name }}</li>
 {% endfor %}
-
-
-
 </ul>
+        </div>
     </div>
     </div>
 {% endblock %}

@@ -76,7 +76,7 @@
             </ul>
                 <img class="medium-photo align-self-end" src="/uploads/{{episode.images.ingredient}}" alt="k">
             </div>
-            <form class="align-self-end" action="{{ path('episode_show', {'id': episode.id}) }}" method="post">
+            <form class="align-self-end" action="{{ path('episode_show', {'slug': episode.slug}) }}" method="post">
             <div class="m-3"> Ingredients for <input class="calc-input m-2" type="number" name="quantity" step="1"> persons </div>
                 <button type="submit" class="calc-button"><i class="fas fa-calculator"></i> calculate!</button>
 
@@ -92,7 +92,7 @@
 
 
            </div>
-    <a href="{{ path('season_show', {'id': episode.season.id}) }}">Back to Season {{ episode.season.number}}. : {{  episode.season.title }}</a>
+    <a href="{{ path('season_show', {'slug': episode.season.slug}) }}">Back to Season {{ episode.season.number}}. : {{  episode.season.title }}</a>
 {% if app.user %}
     <a class="login-button m-3" href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
 

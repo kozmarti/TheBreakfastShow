@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Episode;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
+use App\Service\Slug;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 /**
@@ -29,13 +31,19 @@ class EpisodeController extends AbstractController
     /**
      * @Route("/new", name="episode_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slug $slug): Response
     {
         $episode = new Episode();
         $form = $this->createForm(EpisodeType::class, $episode);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $chosenSeason = $episode->getSeason();
+            $number = count($chosenSeason->getEpisodes()) + 1;
+            $episode->setNumber($number);
+
+            $episode->setSlug($slug->slugify($episode->getTitle()));
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($episode);
             $entityManager->flush();
@@ -46,12 +54,15 @@ class EpisodeController extends AbstractController
         return $this->render('episode/new.html.twig', [
             'episode' => $episode,
             'form' => $form->createView(),
+            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false
         ]);
     }
 
     /**
-     * @Route("/{id}", name="episode_show", methods={"GET","POST"})
+     * @Route("/{slug}", name="episode_show", methods={"GET"})
+     * @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
      */
+
     public function show(Request $request,Episode $episode): Response
     {
         $multiplier = $request->request->all();
@@ -64,8 +75,7 @@ class EpisodeController extends AbstractController
         return $this->render('episode/show.html.twig', [
             'episode' => $episode,
             'multiplier' => $multiplier,
-
-        ]);
+            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false]);
     }
 
     /**

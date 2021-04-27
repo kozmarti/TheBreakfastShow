@@ -14,7 +14,7 @@
 
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-column justify-content-around">
-            <div><a href="{{ path('episode_show', {'id': episode.id}) }}"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
+            <div><a href="{{ path('episode_show', {'slug': episode.slug}) }}"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
                     <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i> </a>
             </div>
         <div>{{episode.recipename }}</div>

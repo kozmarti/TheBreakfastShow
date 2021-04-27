@@ -27,21 +27,21 @@
         <div class="collapse navbar-collapse bg-white" id="navbarToggler">
             <ul class="navbar-nav mt-2 mt-lg-0 handwriting large-text">
                 <li class="nav-item {% if aboutme %} active {% endif %}">
-                    <a class="nav-link light-text" href="{{ path('welcome') }}">About me</a>
+                    <a class="nav-link light-text" href="{{ path('welcome') }}">{% trans %}about_me{% endtrans %}</a>
                 </li>
                 <li class="nav-item {% if recipes %} active {% endif %}">
-                    <a class="nav-link light-text" href="{{ path('recipes_home') }}">Recipes</a>
+                    <a class="nav-link light-text" href="{{ path('recipes_home') }}">{% trans %}recipes{% endtrans %}</a>
                 </li>
                 <li class="nav-item {% if funfacts %} active {% endif %}">
-                    <a class="nav-link light-text" href="{{ path('fun_fact') }}">Fun facts</a>
+                    <a class="nav-link light-text" href="{{ path('fun_fact') }}">{% trans %}funfacts{% endtrans %}</a>
                 </li>
                 {% if app.user %}
                     <li class="nav-item  {% if login %} active {% endif %}">
-                        <a class="nav-link light-text" href="{{ path('app_logout') }}">Logout</a>
+                        <a class="nav-link light-text" href="{{ path('app_logout') }}">{% trans %}logo ut{% endtrans %}</a>
                     </li>
                 {% else %}
                     <li class="nav-item  {% if login %} active {% endif %}">
-                        <a class="nav-link light-text" href="{{ path('app_login') }}">Login</a>
+                        <a class="nav-link light-text" href="{{ path('app_login') }}">{% trans %}login{% endtrans %}</a>
                     </li>
                 {% endif %}
             </ul>
@@ -57,6 +57,21 @@
 
 
         <div>
+
+
+            <div class="col-7 d-flex justify-content-end">
+                {% if app.request.locale == 'en' %}
+                    <a href="{{ path('welcome', {_locale: 'hu'}) }}">
+                        HU
+                    </a>
+                {% else %}
+                    <a href="{{ path('welcome', {_locale: 'en'}) }}">
+                      EN
+                    </a>
+                {% endif %}
+
+            </div>
+
         <a href="https://www.instagram.com/the_breakfast_show/" target="_blank"><img class="insta-logo" src="{{ asset('build/images/logo/instagram.svg') }}" alt="instagram"></a>
         <a href="https://www.facebook.com/thebreakfastshow1" ><img class="fb-logo" src="{{ asset('build/images/logo/facebook.svg') }}" alt="facebook"></a>
         </div>
