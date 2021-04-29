@@ -32,10 +32,11 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/home", name="welcome")
+     * @Route("//home", name="welcome")
      */
     public function welcome(ImagesRepository $imagesRepository): Response
     {
+        //@Route("/{_locale}/home", name="welcome")
         $images=$imagesRepository->findAll();
 
         $ownerPhotos=[];
