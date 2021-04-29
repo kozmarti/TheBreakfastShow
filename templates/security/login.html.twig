@@ -18,20 +18,21 @@
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <div class="d-flex justify-content-center">
+        <div class="use-shadow p-5 m-5">
+    <div class="handwriting d-flex justify-content-center"><span class="active"><a class=" large-text nav-link" href="{{ path('app_login') }}">Login</a></span>
+        <span><a class="light-text large-text nav-link" href="{{ path('app_register') }}">Register</a></span></div>
     <label for="inputUsername">Username</label>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
     <label for="inputPassword">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
-
     <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    <button class="login-button m-3" type="submit">
-        Sign in
+           value="{{ csrf_token('authenticate') }}">
+    <button class="login-button m-3" type="submit" >
+        Log in
     </button>
 </form>
 </div>
+    </div>
+    </div>
 {% endblock %}

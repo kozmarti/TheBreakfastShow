@@ -1,6 +1,11 @@
+html{
+  height: 100%;
+
+}
 body{
+  height: 100%;
   animation: fadein 2s;
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to top, $yellow,$orange);
+
 
 }
 @keyframes fadein {

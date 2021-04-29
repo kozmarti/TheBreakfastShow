@@ -6,6 +6,7 @@ use App\Entity\Episode;
 use App\Entity\Images;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
+use App\Repository\SeasonRepository;
 use App\Service\Slug;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,12 +61,13 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="episode_show", methods={"GET"})
+     * @Route("/{slug}", name="episode_show", methods={"GET", "POST"})
      * @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
      */
 
-    public function show(Request $request,Episode $episode): Response
+    public function show(Request $request,Episode $episode, SeasonRepository $seasonRepository): Response
     {
+        $seasons = $seasonRepository->findAll();
         $multiplier = $request->request->all();
         if ($multiplier) {
             $multiplier=  $multiplier['quantity'];
@@ -74,6 +76,7 @@ class EpisodeController extends AbstractController
         }
 
         return $this->render('episode/show.html.twig', [
+            'seasons' => $seasons,
             'episode' => $episode,
             'multiplier' => $multiplier,
             'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false]);
