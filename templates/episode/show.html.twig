@@ -1,7 +1,17 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
-    {% include 'home/content/recipes.html.twig' %}
+    <div class="season-navigation">
+        {% for seas in seasons %}
+            <div class="season-navigation-items{% if episode.season.id == seas.id%} active active-left {% endif %}">
+                <div>
+                    <a class="nav-link handwriting light-text" href="{{ path('season_show', {'slug': seas.slug}) }}">Season {{seas.number }}. :
+                        {{seas.title }}
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
     <div class="handwriting"> <a href="{{ path('season_show', {'slug': episode.season.slug}) }}">Season {{ episode.season.number }}.   </a> <i class="fas fa-arrow-right"></i> Episode {{episode.number }}. </div>
     <div class="about-me-bg"></div>
 <div class="episode-box">

@@ -8,18 +8,18 @@
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
-    <div class="d-flex justify-content-center">
-        <div class="use-shadow p-5 m-5">
+    <div class="d-flex justify-content-center ">
+        <div class="use-shadow p-5 m-5 rounded">
             <div class="handwriting d-flex justify-content-center"><span><a class=" large-text nav-link" href="{{ path('app_login') }}">Login</a></span>
                 <span class="active"><a class="light-text large-text nav-link" href="{{ path('app_register') }}">Register</a></span></div>
 
-    {{ form_start(registrationForm) }}
+    {{ form_start(registrationForm, { 'attr' : { 'class': 'register-form' } }) }}
         {{ form_row(registrationForm.username) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="blue-button align-self-center">Register</button>
     {{ form_end(registrationForm) }}
 </div>
 </div>

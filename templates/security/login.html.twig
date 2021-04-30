@@ -19,18 +19,20 @@
         </div>
     {% endif %}
     <div class="d-flex justify-content-center">
-        <div class="use-shadow p-5 m-5">
+        <div class="use-shadow p-5 m-5 rounded ">
     <div class="handwriting d-flex justify-content-center"><span class="active"><a class=" large-text nav-link" href="{{ path('app_login') }}">Login</a></span>
         <span><a class="light-text large-text nav-link" href="{{ path('app_register') }}">Register</a></span></div>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+            <div class="d-flex flex-column align-items-center p-4">
+    <label class="align-self-start" for="inputUsername">Username</label>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control login-input" required autofocus>
+    <label class="align-self-start" for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control login-input" required>
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}">
-    <button class="login-button m-3" type="submit" >
+    <button class="blue-button" type="submit" >
         Log in
     </button>
+            </div>
 </form>
 </div>
     </div>

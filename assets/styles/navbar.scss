@@ -27,6 +27,13 @@
   }
 }
 
+.dropdown-item.active, .dropdown-item:active {
+  z-index: 1000;
+  color: $dark-brown !important;
+  border-bottom: 3px solid $dark-brown !important;
+  background-color: white !important;
+}
+
 @media (max-width: 1200px) {
   .navbar-logo {
     height: 70px;
