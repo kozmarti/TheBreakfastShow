@@ -2,6 +2,10 @@
     font-family: 'Pacifico', cursive;
 }
 
+.simple-police {
+    font-family: 'Roboto', sans-serif;
+}
+
 .dark-text{
     color: $dark-brown;
 }
@@ -22,7 +26,6 @@
 .use-shadow {
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
 }
 
 

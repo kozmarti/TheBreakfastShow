@@ -10,15 +10,12 @@
 
     </head>
     <body>
+
     <div class="wrapper">
         {% block body %}{% endblock %}
         <div class="push"></div>
     </div>
-    <footer class="footer">
-        <div class="handwriting small-text light-text">Follow me</div>
-        <a href="https://www.instagram.com/the_breakfast_show/" target="_blank"><img class="insta-logo" src="{{ asset('build/images/logo/instagram.svg') }}" alt="instagram"></a>
-        <a href="https://www.facebook.com/thebreakfastshow1" target="_blank" ><img class="fb-logo" src="{{ asset('build/images/logo/facebook.svg') }}" alt="facebook"></a>
-    </footer>
+    {% include 'home/component/_footer.html.twig' %}
         {% block javascripts %}   {{ encore_entry_script_tags('app') }}{% endblock %}
 
     </body>

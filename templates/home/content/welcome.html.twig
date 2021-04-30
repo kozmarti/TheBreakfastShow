@@ -3,37 +3,45 @@
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
 <div class="wide-container-wrapper">
-   <div class="wide-container">
+   <div class="wide-container welcome-wide-container">
 
        {% for i in 0..3 %}
 
            <div class="1size3-flex-item">
-       <img class="{% if loop.index is even%} small-image{% else%} large-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="">
+       <img class="image-{{ i }} {% if loop.index is even%} small-image{% else%}  large-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="">
            </div>
        {% endfor %}
 
-       <div class="1size3-flex-item">
+       <div class="1size3-flex-item introduction-box">
     <div class="use-shadow introduction">
         <img class="introduction-logo" src="{{ asset('build/images/logo/logo_orange.png') }}" alt="">
-<h5 class="handwriting">A hot frothy coffee? <i class="fas fa-mug-hot"></i> <br> A fresh crispy croissant? <i class="fas fa-cookie-bite"></i> <br> An English breakfast with bacon and eggs? <i class="fas fa-bacon"></i><i class="fas fa-egg"></i> <br> How do you start the day? <i class="far fa-clock"></i></h5>
-        <p>My favorite meal is the breakfast, especially when you can allow yourself to enjoy it and
-            kick off the day in this way. And come on, breakfasts can be truly various, creative, seasonal, and tasty at
-            the same time. Therefore, I started collecting my recipes and sharing them in the social media
-            <i class="fab fa-instagram white-pic"></i> <i class="white-pic fab fa-facebook-square white-pic"></i> .</p>
+        <div class="p-3">
+<h5 class="handwriting dark-text">Early? Late? Quick? Lazy? Salty? Sweet?</h5>
+        <p class="simple-police light-text">My favorite meal is the breakfast, especially when you can allow yourself to enjoy it and kick off the day
+            in this way. And come on, breakfasts can be truly various, creative, seasonal, and tasty at the same time.
+            Therefore, I started collecting my recipes and sharing them in the social media <i class="fab fa-instagram white-pic"></i> <i class="white-pic fab fa-facebook-square white-pic"></i>    so
+            you can get proof of the above listed characteristics, get to know me and what I represent.
+           </p>
+        <h5 class="handwriting dark-text">But first, where it got started?</h5>
 
-        <p> <i class="far fa-lightbulb"></i> Where it got started? When I was a university student <i class="fas fa-graduation-cap"></i> and studied for my exams <i class="fas fa-book-reader"></i>, I always had the tv on. <i class="fas fa-tv"></i>
-            Not because I wanted to distract my attention on purpose but because in this way, I could make myself
-            believe that it was not all about studying (boring...) but also letting some fun in. <i class="far fa-hand-peace"></i> This fun were the
-            cooking and baking shows which became my passion straight away.</p>
-        <p><i class="far fa-hand-point-right"></i> I have always known that one day I would like to start a business <i class="fas fa-suitcase"></i> where I can be in touch with people <i class="fas fa-users"></i>,
-            use my creative side and skills and basically represent myself.
-            I hope that you will enjoy preparing my recipes as much as I do, and moreover believe that one day I
-            can also welcome and serve you at my own place in Budapest. <i class="fas fa-heart"></i></p>
+
+        <p  class="simple-police light-text">When I was a university student  <i class="fas fa-graduation-cap"></i> and studied for my exams, I have always had the tv on. I wonder if it’s
+            only me… Not because I wanted to distract my attention on purpose but because in this way, I could
+            make myself believe that it was not all about studying (boring...) but also letting some fun in. This fun
+            were the cooking and baking shows which has become my passion straight away.
+        <h5 class="handwriting dark-text">And where it may take me to?</h5>
+        <p  class="simple-police light-text">I have always known that one day I would like to start a business  <i class="fas fa-suitcase"></i> where I can be in touch with people,
+            use my creative side and skills and most importantly represent myself.
+</p>
+
+        <p  class="simple-police dark-text">I hope that you will enjoy preparing my recipes as much as I do, and moreover I believe that one day I
+            can also welcome and serve you at my own breakfast place in Budapest  <i class="fas fa-heart"></i>, Hungary. </p>
+        </div>
     </div>
     </div>
        {% for i in 4..7 %}
         <div class="1size3-flex-item">
-           <img class="{% if loop.index is even%} large-image{% else%}small-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="">
+           <img class=" image-{{ i }} {% if loop.index is even%} large-image{% else%}small-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="">
         </div>
        {% endfor %}
 
