@@ -10,6 +10,32 @@
 
     <div class="wide-container-wrapper">
         <div class="narrow-container">
+            <div class="season-navigation-small">
+
+                <div class="dropdown">
+                    <button class="blue-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Season {{ season.number }}.: {{ season.title }}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% for seas in seasons %}
+
+                            <a class="dropdown-item {% if season.id == seas.id%} active {% endif %} nav-link handwriting light-text" href="{{ path('season_show', {'slug': seas.slug}) }}">Season {{seas.number }}. : {{seas.title }}</a>
+
+                        {% endfor %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="dropdown-item nav-link handwriting light-text" href="{{ path('season_new')}}"><i class="fas fa-plus"></i> Add New Season
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <button class="blue-button ">
+                <a class="m-3" href="{{ path('episode_new') }}"><i class="fas fa-plus"></i> Add New Episode</a>
+                </button>
+            {% endif %}
+
     {% for episode in episodes %}
 
         <div class="d-flex justify-content-between episode-container rounded use-shadow mt-3">

@@ -1,4 +1,4 @@
-{{ form_start(form) }}
+{{ form_start(form, { 'attr' : { 'class': 'create-season-form' } }) }}
     {{ form_widget(form) }}
-    <button class="login-button m-3" >{{ button_label|default('Save') }}</button>
+    <button class="blue-button m-3" >{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

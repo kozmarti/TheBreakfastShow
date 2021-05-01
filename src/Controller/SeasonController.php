@@ -21,14 +21,18 @@ class SeasonController extends AbstractController
     /**
      * @Route("/new", name="season_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, SeasonRepository $seasonRepository): Response
     {
         $season = new Season();
         $form = $this->createForm(SeasonType::class, $season);
         $form->handleRequest($request);
+        $nextSeasonNumber = count($seasonRepository->findAll()) + 1;
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $nextSeasonNumber = count($seasonRepository->findAll()) + 1;
+            $season->setNumber($nextSeasonNumber);
+            $season->setSlug('season-'.$nextSeasonNumber.'-'.$season->getTitle());
             $entityManager->persist($season);
             $entityManager->flush();
 
@@ -36,8 +40,10 @@ class SeasonController extends AbstractController
         }
 
         return $this->render('season/new.html.twig', [
+            'next_season_number' => $nextSeasonNumber,
             'season' => $season,
             'form' => $form->createView(),
+            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false
         ]);
     }
 

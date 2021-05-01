@@ -13,7 +13,6 @@ class SeasonType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('number')
         ;
     }
 

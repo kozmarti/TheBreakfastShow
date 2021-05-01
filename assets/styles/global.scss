@@ -42,6 +42,14 @@
 
 }
 
+.extra-large-image {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+
+}
+
+
 .small-image {
     width: 300px;
     height: 300px;
@@ -145,4 +153,15 @@ label {
 
 .heart-color {
     color: #ff0084;
+}
+
+.white-text {
+    color:white;
+    &:hover{
+        color:white;
+    }
+}
+
+.underlined-text {
+    text-decoration: underline;
 }

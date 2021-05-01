@@ -3,11 +3,11 @@
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
 
-<div class="about-me-bg"></div>
-
-<div class="login-text">
-    <h1>Create new Season</h1>
+<div class="d-flex justify-content-center">
+<div class="use-shadow rounded m-5 p-5 d-flex flex-column align-items-center">
+    <h4 class="simple-police dark-text">Create New Season</h4>
+    <p  class="handwriting light-text"> This will be your {{ next_season_number }}. season.</p>
     {{ include('season/_form.html.twig') }}
-    <a class="login-button m-3" href="{{ path('episode_new') }}">Episode editor</a>
+</div>
 </div>
 {% endblock %}

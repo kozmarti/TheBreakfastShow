@@ -8,23 +8,18 @@
           </div>
       </div>
     {% endfor %}
-</div>
 
 
-<div class="season-navigation season-navigation-small">
-
-    <div class="dropdown">
-        <button class="blue-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Select Season
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {% for seas in seasons %}
-
-                    <a class="dropdown-item {% if season.id == seas.id%} active {% endif %} nav-link handwriting light-text" href="{{ path('season_show', {'slug': seas.slug}) }}">Season {{seas.number }}. : {{seas.title }}</a>
-
-                {% endfor %}
-
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="season-navigation-items">
+        <div>
+            <a class="nav-link handwriting light-text" href="{{ path('season_new')}}"><i class="fas fa-plus"></i> Add New Season
+            </a>
         </div>
     </div>
+    {% endif %}
+
 
 </div>
+
+
