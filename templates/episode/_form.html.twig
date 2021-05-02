@@ -1,4 +1,22 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.season) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.recipename) }}
+    {{ form_row(form.preparationtime) }}
+    {{ form_row(form.person) }}
+    {{ form_row(form.preparation) }}
+    {{ form_row(form.images) }}
+
+    <button type="button" class="add_item_link" data-collection-holder-class="listIngredients">Add a listIngredient</button>
+
+    <ul class="listIngredients" data-prototype="{{ form_widget(form.listIngredients.vars.prototype)|e('html_attr') }}">
+        {% for listIngredient in form.listIngredients %}
+            <li>{{ form_row(listIngredient.quantity) }}</li>
+            <li>{{ form_row(listIngredient.subIngredient) }}</li>
+            <li>{{ form_row(listIngredient.measure) }}</li>
+            <li>{{ form_row(listIngredient.ingredient) }}</li>
+        {% endfor %}
+    </ul>
+
     <button class="login-button m-3"> Next</button>
 {{ form_end(form) }}

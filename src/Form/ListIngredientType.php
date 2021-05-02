@@ -16,7 +16,6 @@ class ListIngredientType extends AbstractType
             ->add('subIngredient')
             ->add('measure',null, ['choice_label' => 'name'])
             ->add('ingredient',null, ['choice_label' => 'name'])
-            ->add('episode',null, ['choice_label' => 'title'])
         ;
     }
 

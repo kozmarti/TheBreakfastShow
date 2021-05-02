@@ -61,7 +61,7 @@ class Episode
     private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity=ListIngredient::class, mappedBy="episode", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=ListIngredient::class, mappedBy="episode", orphanRemoval=true, cascade={"persist", "remove"})
      */
     private $listIngredients;
 
