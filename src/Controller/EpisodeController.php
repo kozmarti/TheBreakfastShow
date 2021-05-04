@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Episode;
-use App\Entity\Images;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
+use App\Repository\IngredientRepository;
 use App\Repository\SeasonRepository;
 use App\Service\Slug;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,13 +33,21 @@ class EpisodeController extends AbstractController
     /**
      * @Route("/new", name="episode_new", methods={"GET","POST"})
      */
-    public function new(Request $request, Slug $slug): Response
+    public function new(Request $request, Slug $slug, IngredientRepository $ingredientRepository): Response
     {
         $episode = new Episode();
         $form = $this->createForm(EpisodeType::class, $episode);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($episode->getListIngredients() as $listIngredient) {
+                $ingredient = $ingredientRepository->findOneBy(['name' => $listIngredient->getIngredient()->getName()]);
+                if ($ingredient) {
+                    $listIngredient->setIngredient($ingredient);
+                }
+                $listIngredient->setEpisode($episode);
+            }
+
             $chosenSeason = $episode->getSeason();
             $number = count($chosenSeason->getEpisodes()) + 1;
             $episode->setNumber($number);
@@ -49,8 +57,6 @@ class EpisodeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($episode);
             $entityManager->flush();
-
-            return $this->redirectToRoute('list_ingredient_new');
         }
 
         return $this->render('episode/new.html.twig', [

@@ -31,6 +31,7 @@ class EpisodeType extends AbstractType
             ->add('preparation', PreparationType::class)
             ->add('images', ImagesType::class)
             ->add('listIngredients', CollectionType::class, [
+                'label' => false,
                 'entry_type' => ListIngredientType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,

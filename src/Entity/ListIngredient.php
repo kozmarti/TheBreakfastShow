@@ -33,7 +33,7 @@ class ListIngredient
     private $measure;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Ingredient::class)
+     * @ORM\ManyToOne(targetEntity=Ingredient::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $ingredient;
