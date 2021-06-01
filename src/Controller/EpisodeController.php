@@ -113,12 +113,14 @@ class EpisodeController extends AbstractController
      */
     public function delete(Request $request, Episode $episode): Response
     {
+        $actualSeason = $episode->getSeason()->getSlug();
         if ($this->isCsrfTokenValid('delete'.$episode->getId(), $request->request->get('_token'))) {
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($episode);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('episode_index');
+        return $this->redirectToRoute('season_show', array('slug' => $actualSeason));
     }
 }

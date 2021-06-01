@@ -32,7 +32,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("//home", name="welcome")
+     * @Route("/home", name="welcome")
      */
     public function welcome(ImagesRepository $imagesRepository): Response
     {

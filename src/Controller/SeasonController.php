@@ -32,11 +32,11 @@ class SeasonController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $nextSeasonNumber = count($seasonRepository->findAll()) + 1;
             $season->setNumber($nextSeasonNumber);
-            $season->setSlug('season-'.$nextSeasonNumber.'-'.$season->getTitle());
+            $season->setSlug('season-'.$nextSeasonNumber.'-'.strtolower($season->getTitle()));
             $entityManager->persist($season);
             $entityManager->flush();
 
-            return $this->redirectToRoute('episode_new');
+            return $this->redirectToRoute('season_show', array('slug' => $season->getSlug()));
         }
 
         return $this->render('season/new.html.twig', [
@@ -93,6 +93,6 @@ class SeasonController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('season_index');
+        return $this->redirectToRoute('welcome');
     }
 }
