@@ -29,11 +29,7 @@
 
     <div class="episode-box d-flex flex-column justify-content-center align-items-center">
         <div class="d-flex">
-            {% if app.user %}
-            <div class="use-shadow rounded m-1">
-              <span class="heart-color"> <i id="{{ app.user.id }}-{{ episode.id }}" class="fas fa-heart"></i></span>
-            </div>
-            {% endif %}
+
             <div class="use-shadow rounded  m-1">
                 <div class="simple-police dark-text"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
                 <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i>
@@ -44,7 +40,16 @@
                 <div class="simple-police light-text">
                     {{episode.recipename }}
                 </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="login-button m-3" href="{{ path('episode_edit', {'slug': episode.slug}) }}"><i class="fas fa-pen"></i> Edit</a>
+                    {{ include('episode/_delete_form.html.twig') }}
+                {% endif %}
             </div>
+            {% if app.user %}
+                <div class="use-shadow rounded m-1">
+                    <span class="heart-color"> <i id="{{ app.user.id }}-{{ episode.id }}" class="{% if is_favorite %}fas fa-heart{% else %}far fa-heart{% endif %}"></i></span>
+                </div>
+            {% endif %}
         </div>
 
         <div class="d-flex">
@@ -117,8 +122,14 @@
 
 
             <div>
-                <img class="small-image use-shadow rounded" src="/uploads/{{episode.images.ingredient}}" alt="k">
+                <img class="small-image use-shadow rounded" src="/uploads/{{episode.images.ingredient}}" alt="Ingredients for {{ episode.recipename }}">
             </div>
+
+
+
+        </div>
+        <div class="use-shadow rounded m-1 simple-police light-text">
+            <a class="episode-title-text simple-police dark-text" href="{{ path('user_photo_index', {'slug': episode.slug}) }}"> Upload your own photo</a>
 
         </div>
 
@@ -132,8 +143,9 @@
 
 
 
-    {% if is_granted('ROLE_ADMIN') %}
-        <a class="login-button m-3" href="{{ path('episode_edit', {'id': episode.id}) }}"><i class="fas fa-pen"></i> Edit</a>
-        {{ include('episode/_delete_form.html.twig') }}
-    {% endif %}
+
+     {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('episode_show') }}
+    {% endblock %}
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'home/component/_nav.html.twig' %}
+    {% if my_episodes %}
+        <div class="d-flex flex-wrap justify-content-center m-5">
+    {% for recipe in my_episodes %}
+        <div class="d-flex flex-column flex-nowrap align-items-center use-shadow image-shadow m-4">
+        <img class="small-image image-shadow m-2" src="/uploads/{{ recipe.images.meal }}" alt="image of {{ recipe.recipename }}">
+        <a class="episode-title-text simple-police dark-text" href="{{ path('episode_show', {'slug': recipe.slug}) }}">{{ recipe.recipename }}</a>
+        </div>
+    {% endfor %}
+        {% else %}
+        <div> You have not saved any favourite recipes yet. You can search in the collection of breakfast recipes </div>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,180 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Episode;
+use App\Entity\Favorite;
+use App\Entity\UserPhoto;
+use App\Entity\User;
+use App\Form\UserPhotoType;
+use App\Repository\EpisodeRepository;
+use App\Repository\UserPhotoRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
+/**
+ * @Route("/user/photo")
+ */
+class UserPhotoController extends AbstractController
+{
+    /**
+     * @Route("/all", name="user_photo_all", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function all(UserPhotoRepository $userPhotoRepository): Response
+    {
+
+        return $this->render('user_photo/all.html.twig', [
+            'user_photos' => $userPhotoRepository->findAllOrderedByApproval(),
+            'aboutme' => false,  'funfacts' => false,  'recipes' => false, 'login' => false, 'myrecipes' => false
+        ]);
+    }
+
+    /**
+     * @Route("/approval/{id}", name="photo_approval", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function photoApproval(UserPhotoRepository $userPhotoRepository,Request $request ): Response
+    {
+
+        $photoToApproveID= $request->attributes->get('id');
+        if (is_numeric($photoToApproveID)){
+
+            if (is_null($userPhotoRepository->findOneBy(['id' =>$photoToApproveID]))){
+                return $this->redirectToRoute('user_photo_all');
+            } else {
+
+                $isApproved = $userPhotoRepository->findOneBy(['id' =>$photoToApproveID])->getIsApproved();
+                $photo = $userPhotoRepository->findOneBy(['id' =>$photoToApproveID]);
+                if ($isApproved){
+                    $photo->setIsApproved(false);
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->flush();
+                } else {
+                    $photo->setIsApproved(true);
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->flush();
+                }
+                return $this->redirectToRoute('user_photo_all');
+
+            }
+
+
+        }
+        return $this->render('user_photo/all.html.twig', [
+            'user_photos' => $userPhotoRepository->findAllOrderedByApproval(),
+            'aboutme' => false,  'funfacts' => false,  'recipes' => false, 'login' => false, 'myrecipes' => false
+        ]);
+    }
+
+    /**
+     * @Route("/{slug}", name="user_photo_index", methods={"GET","POST"})
+     * @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
+     */
+    public function index(Request $request, UserPhotoRepository $userPhotoRepository, Episode $episode): Response
+    {
+
+        $userPhoto = new UserPhoto();
+        $form = $this->createForm(UserPhotoType::class, $userPhoto);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userPhoto->setUser($this->getUser());
+            $userPhoto->setEpisode($episode);
+            $userPhoto->setIsApproved(false);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($userPhoto);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user_photo_index', array('slug' => $episode->getSlug()));
+        }
+
+
+        return $this->render('user_photo/index.html.twig', [
+            'episode' => $episode,
+            'user_photos' => $userPhotoRepository->findBy(['episode'=>$episode, 'isApproved' => true]),
+            'form' => $form->createView(),
+            'aboutme' => false,  'aboutyou' => false,   'funfacts' => false,  'recipes' => true, 'login' => false, 'myrecipes' => false]);
+
+    }
+
+
+
+    /**
+     * @Route("/new/{slug}", name="user_photo_new", methods={"GET","POST"})
+     *  @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
+     */
+    public function new(Request $request, Episode $episode): Response
+    {
+        $userPhoto = new UserPhoto();
+        $form = $this->createForm(UserPhotoType::class, $userPhoto);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userPhoto->setUser($this->getUser());
+            $userPhoto->setEpisode($episode);
+            $userPhoto->setIsApproved(false);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($userPhoto);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user_photo_index', array('slug' => $episode->getSlug()));
+        }
+
+        return $this->render('user_photo/new.html.twig', [
+            'user_photo' => $userPhoto,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="user_photo_show", methods={"GET"})
+     */
+    public function show(UserPhoto $userPhoto): Response
+    {
+        return $this->render('user_photo/show.html.twig', [
+            'user_photo' => $userPhoto,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="user_photo_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, UserPhoto $userPhoto): Response
+    {
+        $form = $this->createForm(UserPhotoType::class, $userPhoto);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('user_photo_index');
+        }
+
+        return $this->render('user_photo/edit.html.twig', [
+            'user_photo' => $userPhoto,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="user_photo_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, UserPhoto $userPhoto): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$userPhoto->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($userPhoto);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('user_photo_index');
+    }
+
+
+
+}

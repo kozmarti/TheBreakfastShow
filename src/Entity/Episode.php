@@ -70,9 +70,15 @@ class Episode
      */
     private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity=UserPhoto::class, mappedBy="episode", orphanRemoval=true)
+     */
+    private $userPhotos;
+
     public function __construct()
     {
         $this->listIngredients = new ArrayCollection();
+        $this->userPhotos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -224,6 +230,36 @@ class Episode
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserPhoto[]
+     */
+    public function getUserPhotos(): Collection
+    {
+        return $this->userPhotos;
+    }
+
+    public function addUserPhoto(UserPhoto $userPhoto): self
+    {
+        if (!$this->userPhotos->contains($userPhoto)) {
+            $this->userPhotos[] = $userPhoto;
+            $userPhoto->setEpisode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserPhoto(UserPhoto $userPhoto): self
+    {
+        if ($this->userPhotos->removeElement($userPhoto)) {
+            // set the owning side to null (unless already changed)
+            if ($userPhoto->getEpisode() === $this) {
+                $userPhoto->setEpisode(null);
+            }
+        }
 
         return $this;
     }

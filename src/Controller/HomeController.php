@@ -3,10 +3,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Episode;
+use App\Entity\Favorite;
+use App\Entity\User;
+use App\Repository\EpisodeRepository;
+use App\Repository\FavoriteRepository;
 use App\Repository\ImagesRepository;
 
 use App\Repository\FunFactRepository;
 use App\Repository\IngredientRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,7 +54,7 @@ class HomeController extends AbstractController
         shuffle($ownerPhotos);
         $countOwnerPhotos = count($ownerPhotos);
         return $this->render('home/content/welcome.html.twig', ['images' => $ownerPhotos,'count_photos' =>$countOwnerPhotos,
-            'aboutme' => true,   'funfacts' => false,  'recipes' => false, 'login' => false]);
+            'aboutme' => true,   'funfacts' => false,  'recipes' => false, 'login' => false, 'myrecipes' => false]);
     }
 
     /**
@@ -61,18 +67,35 @@ class HomeController extends AbstractController
 
 
         return $this->render('home/content/funfact.html.twig', ['random_fact' => $fact, 'actors' => $funfacts,
-        'aboutme' => false,   'funfacts' => true,  'recipes' => false,  'login' => false]);
+        'aboutme' => false,   'funfacts' => true,  'recipes' => false,  'login' => false, 'myrecipes' => false]);
     }
 
     /**
      * @Route("/favorites", name="favorites")
      */
-    public function favorites(Request $request, EntityManagerInterface $entityManager): Response
+    public function favorites(UserRepository $userRepository, EpisodeRepository $episodeRepository, Request$request, FavoriteRepository $favoriteRepository, EntityManagerInterface $entityManager): Response
     {
         $userId = $request->get('user-id');
         $episodeId = $request->get('episode-id');
-        dd($episodeId, $userId);
-        return $this->json($userId, 200);
+        if (is_numeric($userId) && is_numeric($episodeId)) {
+            if (!is_null($userRepository->find($userId)) && !is_null($episodeRepository->find($episodeId))) {
+                if (is_null($favoriteRepository->findOneBy(['user' => $userId,'episode' => $episodeId]))){
+                    $favorite = new Favorite();
+                    $favorite->setUser($userId);
+                    $favorite->setEpisode($episodeId);
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($favorite);
+                    $entityManager->flush();
+                } else {
+                    $favorite = $favoriteRepository->findOneBy(['user' => $userId,'episode' => $episodeId]);
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->remove($favorite);
+                    $entityManager->flush();
+                }
+            }
+        }
+
+        return $this->json('', 200);
 
     }
 

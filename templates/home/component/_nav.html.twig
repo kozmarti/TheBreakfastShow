@@ -36,8 +36,8 @@
                     <a class="nav-link light-text" href="{{ path('fun_fact') }}">FunFacts</a>
                 </li>
                 {% if app.user %}
-                    <li class="nav-item  {% if login %} active {% endif %}">
-                        <a class="nav-link light-text" href="">My Recipes</a>
+                    <li class="nav-item  {% if myrecipes %} active {% endif %}">
+                        <a class="nav-link light-text" href="{{ path('recipes_my_recipes') }}">My Recipes</a>
                     </li>
                     <li class="nav-item  {% if login %} active {% endif %}">
                         <a class="nav-link light-text" href="{{ path('app_logout') }}">LogOut</a>
@@ -46,6 +46,12 @@
                     <li class="nav-item  {% if login %} active {% endif %}">
                         <a class="nav-link light-text" href="{{ path('app_login') }}">Login</a>
                     </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('user_photo_all') }}">Approve User photos </a>
+                </li>
                 {% endif %}
             </ul>
 

@@ -43,7 +43,7 @@ class SeasonController extends AbstractController
             'next_season_number' => $nextSeasonNumber,
             'season' => $season,
             'form' => $form->createView(),
-            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false
+            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false, 'myrecipes' => false
         ]);
     }
 
@@ -59,7 +59,7 @@ class SeasonController extends AbstractController
             'season' => $season,
             'episodes' => $episodes,
             'seasons' => $seasons,
-            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false]);
+            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false, 'myrecipes' => false]);
     }
 
     /**

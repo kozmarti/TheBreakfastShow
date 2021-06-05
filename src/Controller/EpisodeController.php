@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Episode;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
+use App\Repository\FavoriteRepository;
 use App\Repository\IngredientRepository;
 use App\Repository\SeasonRepository;
 use App\Service\Slug;
@@ -62,7 +63,7 @@ class EpisodeController extends AbstractController
         return $this->render('episode/new.html.twig', [
             'episode' => $episode,
             'form' => $form->createView(),
-            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false
+            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false, 'myrecipes' => false
         ]);
     }
 
@@ -71,8 +72,10 @@ class EpisodeController extends AbstractController
      * @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
      */
 
-    public function show(Request $request,Episode $episode, SeasonRepository $seasonRepository): Response
+    public function show(Request $request,Episode $episode, FavoriteRepository $favoriteRepository,SeasonRepository $seasonRepository): Response
     {
+        $user = $this->getUser();
+        $isFavorite = $favoriteRepository->findOneBy(['user' => $user,'episode' => $episode]);
         $seasons = $seasonRepository->findAll();
         $multiplier = $request->request->all();
         if ($multiplier) {
@@ -85,11 +88,13 @@ class EpisodeController extends AbstractController
             'seasons' => $seasons,
             'episode' => $episode,
             'multiplier' => $multiplier,
-            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false]);
+            'is_favorite' => $isFavorite,
+            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false, 'myrecipes' => false]);
     }
 
     /**
-     * @Route("/{id}/edit", name="episode_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="episode_edit", methods={"GET","POST"})
+     * @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
      */
     public function edit(Request $request, Episode $episode): Response
     {
@@ -99,13 +104,13 @@ class EpisodeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('recipes_home');
+            return $this->redirectToRoute('episode_show', array('slug' => $episode->getSlug()));
         }
 
         return $this->render('episode/edit.html.twig', [
             'episode' => $episode,
             'form' => $form->createView(),
-        ]);
+            'aboutme' => false,  'funfacts' => false,  'recipes' => true, 'login' => false, 'myrecipes' => false]);
     }
 
     /**

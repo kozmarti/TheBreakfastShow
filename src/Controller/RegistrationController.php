@@ -47,7 +47,7 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
-            'aboutme' => false,  'funfacts' => false,  'recipes' => false, 'login' => true
+            'aboutme' => false,  'funfacts' => false,  'recipes' => false, 'login' => true, 'myrecipes' => false
         ]);
     }
 }

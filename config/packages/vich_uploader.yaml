@@ -11,3 +11,6 @@ vich_uploader:
         ownerphoto_file:
             uri_prefix: /uploads
             upload_destination: '%upload_directory%'
+        image_file:
+            uri_prefix: /uploads
+            upload_destination: '%upload_directory%'
