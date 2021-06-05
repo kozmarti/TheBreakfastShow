@@ -29,9 +29,11 @@
 
     <div class="episode-box d-flex flex-column justify-content-center align-items-center">
         <div class="d-flex">
+            {% if app.user %}
             <div class="use-shadow rounded m-1">
-                <span class="heart-color"> <i class="fas fa-heart"></i></span>
+              <span class="heart-color"> <i id="{{ app.user.id }}-{{ episode.id }}" class="fas fa-heart"></i></span>
             </div>
+            {% endif %}
             <div class="use-shadow rounded  m-1">
                 <div class="simple-police dark-text"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
                 <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i>
@@ -131,7 +133,7 @@
 
 
     {% if is_granted('ROLE_ADMIN') %}
-        <a class="login-button m-3" href="{{ path('episode_edit', {'id': episode.id}) }}">edit</a>
+        <a class="login-button m-3" href="{{ path('episode_edit', {'id': episode.id}) }}"><i class="fas fa-pen"></i> Edit</a>
         {{ include('episode/_delete_form.html.twig') }}
     {% endif %}
 {% endblock %}

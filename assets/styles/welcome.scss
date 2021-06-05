@@ -16,19 +16,18 @@
   object-fit: cover;
   transition: 2s transform linear;
   opacity: 1;
-  &:hover {
-    transform: scale(1.2);
-  }
 }
 
 .disappear-effect {
   opacity: 1;
-  transition: 2s opacity  cubic-bezier(1, 0.6, 0.3, 0.1), 1s transform linear;
+  transform: scale(1);
+  transition: 2s opacity  cubic-bezier(1, 0.6, 0.3, 0.1), 2s transform linear;
 }
 
 .appear-effect {
   opacity: 0;
-  transition: 2s opacity cubic-bezier(0.1, 0.3, 0.6, 1), 1s transform linear;
+  transform: scale(1.2);
+  transition: 2s opacity cubic-bezier(0.1, 0.3, 0.6, 1), 2s transform linear;
 }
 
 

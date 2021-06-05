@@ -73,7 +73,7 @@ class SeasonController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('season_index');
+            return $this->redirectToRoute('season_show', array('slug' => $season->getSlug()));
         }
 
         return $this->render('season/edit.html.twig', [

@@ -64,4 +64,16 @@ class HomeController extends AbstractController
         'aboutme' => false,   'funfacts' => true,  'recipes' => false,  'login' => false]);
     }
 
+    /**
+     * @Route("/favorites", name="favorites")
+     */
+    public function favorites(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $userId = $request->get('user-id');
+        $episodeId = $request->get('episode-id');
+        dd($episodeId, $userId);
+        return $this->json($userId, 200);
+
+    }
+
 }

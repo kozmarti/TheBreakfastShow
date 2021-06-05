@@ -11,6 +11,7 @@ import '../styles/app.scss';
 // start the Stimulus application
 import '../bootstrap';
 import './embedForm';
+import './favorites';
 const $ = require('jquery');
 
 // this "modifies" the jquery module: adding behavior to it

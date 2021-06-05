@@ -1,5 +1,4 @@
 jQuery(document).ready(function() {
-    console.log('ok')
     // Get the ul that holds the collection of tags
     var $listIngredientsCollectionHolder = $('ul.listIngredients');
     // count the current form inputs we have (e.g. 2), use that as the new
