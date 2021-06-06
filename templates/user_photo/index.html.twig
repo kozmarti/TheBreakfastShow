@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
-
-<h1> User photos for <a class="episode-title-text simple-police dark-text" href="{{ path('episode_show', {'slug': episode.slug}) }}"> {{  episode.title }} - {{  episode.recipename }}</a></h1>
+    <div class="d-flex flex-column align-items-center m-5">
+<div class="dark-text simple-police large-text"> User photos for <a class="episode-title-text simple-police dark-text" href="{{ path('episode_show', {'slug': episode.slug}) }}"><i class="fas fa-quote-left"></i> {{  episode.title }} <i class="fas fa-quote-right"></i> - {{  episode.recipename }}</a></div>
     {% for message in app.flashes('notice') %}
-        <div class="alert-success">
+        <div class="alert-success alert">
             {{ message }}
         </div>
     {% endfor %}
-    <div class="d-flex flex-wrap justify-content-center m-5">
 
+        <div class="d-flex justify-content-center align-items-center flex-wrap m-5">
         {% for user_photo in user_photos %}
     <div class="d-flex flex-column flex-nowrap align-items-center use-shadow image-shadow m-4">
             <img class="small-image image-shadow m-2" src="/uploads/{{user_photo.image }}" alt="image of {{ user_photo.episode.recipename }}">
@@ -19,18 +19,20 @@
 
         {% else %}
 
-            <div> No user photos yet. Be the first to share your skills ;) </div>
-            <div> Admin approval is needed before appearance of your photo </div>
+            <div class="m-5 simple-police dark-text"> No user photos yet. Be the first to share your skills. </div>
+
             {% if not app.user %}
                 <a class="episode-title-text simple-police dark-text" href="{{ path('app_register') }}"> Register </a>
             {% endif %}
 
         {% endfor %}
 </div>
-{% if app.user %}
-    {{ form_start(form) }}
-    {{ form_row(form.imageFile) }}
-    <button class="login-button m-3">Upload</button>
-    {{ form_end(form) }}
-    {% endif %}
+        {% if app.user %}
+            {{ form_start(form) }}
+            {{ form_row(form.imageFile) }}
+            <button class="blue-button m-3">Upload</button>
+            {{ form_end(form) }}
+        {% endif %}
+    </div>
+
 {% endblock %}

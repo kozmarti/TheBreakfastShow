@@ -97,12 +97,20 @@ class EpisodeController extends AbstractController
      * @Route("/{slug}/edit", name="episode_edit", methods={"GET","POST"})
      * @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
      */
-    public function edit(Request $request, Episode $episode): Response
+    public function edit(Request $request, Episode $episode, IngredientRepository $ingredientRepository): Response
     {
         $form = $this->createForm(EpisodeType::class, $episode);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($episode->getListIngredients() as $listIngredient) {
+                $ingredient = $ingredientRepository->findOneBy(['name' => $listIngredient->getIngredient()->getName()]);
+                if ($ingredient) {
+                    $listIngredient->setIngredient($ingredient);
+                }
+                $listIngredient->setEpisode($episode);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('episode_show', array('slug' => $episode->getSlug()));

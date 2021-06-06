@@ -28,24 +28,26 @@
 
 
     <div class="episode-box d-flex flex-column align-items-center mb-5">
-<div>
-        <div class="d-flex">
+        <div>
+            <div class="d-flex">
 
-            <div class="use-shadow rounded stretch-item m-1 prep-box">
-                <div class="simple-police dark-text"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
-                <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i>
-                </div>
-                <div class="light-text simple-police">
-                <i class="far fa-clock"></i> {{ episode.preparationtime ? episode.preparationtime|date('H:i:s') : ''  }}
-                </div>
-                <div class="simple-police light-text">
+                <div class="use-shadow rounded stretch-item m-1 prep-box p-3 d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                        <div class="simple-police dark-text large-text"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
+                        <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i>
+                        </div>
+                        <div class="blue-text-dark simple-police">
+                        <i class="far fa-clock"></i> {{ episode.preparationtime ? episode.preparationtime|date('H:i:s') : ''  }}
+                        </div>
+                    </div>
+                    <div class="simple-police light-text align-self-center">
                     {{episode.recipename }}
-                </div>
+                    </div>
                 {% if is_granted('ROLE_ADMIN') %}
                     <a class="login-button m-3" href="{{ path('episode_edit', {'slug': episode.slug}) }}"><i class="fas fa-pen"></i> Edit</a>
                     {{ include('episode/_delete_form.html.twig') }}
                 {% endif %}
-            </div>
+                </div>
             {% if app.user %}
                 <div class="use-shadow rounded m-1">
                     <span class="heart-color"> <i id="{{ app.user.id }}-{{ episode.id }}" class="{% if is_favorite %}fas fa-heart{% else %}far fa-heart{% endif %} fa-3x ajax-heart p-3"></i></span>
@@ -54,20 +56,16 @@
         </div>
 
         <div class="d-flex">
-            <img class="extra-large-image use-shadow rounded meal-photo m-5" src="/uploads/{{episode.images.meal}}" alt="k">
-            <div class="use-shadow rounded m-1 prep-box stretch-item">
-                <div>
-                    <div class="simple-police light-text"><i class="fas fa-shopping-cart"></i> Shopping list: </div>
-                    <div class="simple-police light-text"> <i class="fas fa-users"></i> :
-                        {% if multiplier is not same as(0) %}
-                            {{multiplier }}
-                        {% else %}
-                            {{episode.person }}
-                        {% endif %}
-                    </div>
-                    <form class="align-self-end" action="{{ path('episode_show', {'slug': episode.slug}) }}" method="post">
-                        <div class="m-3"> Recalculate ingredients for <input class="calc-input m-2" value="{{episode.person }}" type="number" name="quantity" step="1"> persons </div>
-                        <button type="submit" class="calc-button"><i class="fas fa-calculator"></i> calculate!</button>
+            <div class="align-self-center">
+            <img class="extra-large-image use-shadow rounded meal-photo m-1" src="/uploads/{{episode.images.meal}}" alt="image of {{episode.recipename}}">
+            </div>
+            <div class="use-shadow rounded m-1 p-3 prep-box stretch-item">
+                <div class="d-flex justify-content-between m-1 mb-5">
+                    <div class="simple-police light-text p-3"> Shopping list: </div>
+
+                    <form class="align-self-end simple-police light-text" action="{{ path('episode_show', {'slug': episode.slug}) }}" method="post">
+                        <i class="fas fa-users"></i> <input class="calc-input" value="{% if multiplier is not same as(0) %}{{multiplier }}{% else %}{{episode.person }}{% endif %}" type="number" name="quantity" step="1">
+                        <button type="submit" class="blue-button m-0 p-2"><i class="fas fa-arrow-right"></i></button>
 
                     </form>
                 </div>
@@ -116,8 +114,8 @@
 
 
         <div class="d-flex">
-            <div class="prep-box use-shadow rounded mr-2 simple-police light-text stretch-item">
-                <div class="d-flex flex-column align-items-center justify-content-center mt-5  prep-text ">
+            <div class="prep-box use-shadow rounded m-1 p-3 simple-police light-text stretch-item">
+                <div class="prep-text ">
                 <div class="simple-police blue-text-dark p-3"> Preparation:</div>
                     <div class="blue-text-light text-wrap">
                 {% apply markdown_to_html %}
@@ -126,14 +124,14 @@
                     </div>
             </div>
             </div>
-            <div>
-                <img class="small-image use-shadow rounded" src="/uploads/{{episode.images.ingredient}}" alt="Ingredients for {{ episode.recipename }}">
+            <div class="align-self-center">
+                <img class="small-image m-1 use-shadow rounded" src="/uploads/{{episode.images.ingredient}}" alt="Ingredients for {{ episode.recipename }}">
             </div>
        </div>
 
 
-        <div class="use-shadow rounded m-1 simple-police light-text">
-            <a class="episode-title-text simple-police dark-text" href="{{ path('user_photo_index', {'slug': episode.slug}) }}"> Take a look how others prepared it <i class="far fa-grin-hearts "></i></a>
+        <div class="d-flex justify-content-end use-shadow rounded m-1 p-3 simple-police light-text">
+            <a class="episode-title-text simple-police dark-text" href="{{ path('user_photo_index', {'slug': episode.slug}) }}"> How others prepared it <i class="fas fa-arrow-right"></i></a>
         </div>
 
     </div>
