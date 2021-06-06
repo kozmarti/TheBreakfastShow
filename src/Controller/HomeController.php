@@ -73,7 +73,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/favorites", name="favorites")
      */
-    public function favorites(UserRepository $userRepository, EpisodeRepository $episodeRepository, Request$request, FavoriteRepository $favoriteRepository, EntityManagerInterface $entityManager): Response
+    public function favorites(UserRepository $userRepository, EpisodeRepository $episodeRepository, Request $request, FavoriteRepository $favoriteRepository, EntityManagerInterface $entityManager): Response
     {
         $userId = $request->get('user-id');
         $episodeId = $request->get('episode-id');
@@ -99,4 +99,15 @@ class HomeController extends AbstractController
 
     }
 
+    /**
+     * @Route("/search", name="search", methods={"GET"})
+     */
+
+    public function search(Request $request, EpisodeRepository $episodeRepository, IngredientRepository $ingredientRepository): Response
+    {
+        $toSearch=$request->get('to-search');
+        $result = $episodeRepository->findBySearch($toSearch);
+        return $this->render('home/content/search_result.html.twig', ['episodes' => $result, 'to_search' => $toSearch, 'count_result' => count($result),
+        'aboutme' => false,   'funfacts' => false,  'recipes' => false,  'login' => false, 'myrecipes' => false]);
+    }
 }

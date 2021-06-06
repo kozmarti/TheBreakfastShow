@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'home/component/_nav.html.twig' %}
+
+    <div class="wide-container-wrapper">
+    <div class="narrow-container">
+        <div class="simple-police dark-text large-text align-self-start">
+            {% if count_result %}
+                {{ count_result }}
+                {% if count_result == 1 %}
+                    result
+                {% else %}
+                    results
+                {% endif %}
+            for "{{ to_search }}"
+            {% else %}
+                No result found for for "{{ to_search }}"
+            {% endif %}
+            </div>
+    {% for episode in episodes %}
+
+        <div class="d-flex justify-content-between episode-container rounded use-shadow mt-3">
+            <div class="d-flex flex-column justify-content-around">
+                <div ><a class="episode-title-text simple-police dark-text" href="{{ path('episode_show', {'slug': episode.slug}) }}"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
+                        <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i> </a>
+                </div>
+                <div class="simple-police light-text align-self-end">{{episode.recipename }}</div>
+
+            </div>
+            <img class="mini-image rounded use-shadow" src="/uploads/{{ episode.images.ownerphoto }}" alt="Image {{ episode.recipename }}">
+        </div>
+    {% endfor %}
+    </div>
+    </div>
+{% endblock %}

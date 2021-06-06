@@ -65,7 +65,7 @@
         </div>
 
 
-        <div>
+        <div class="d-flex">
     {#
 
             <div class="col-7 d-flex justify-content-end">
@@ -81,10 +81,18 @@
 
             </div>
     #}
+            <form class="searchbar" action="{{ path('search') }}" method="get">
+                <div>
+                    <input class="handwriting rounded light-text" type="text" name="to-search" placeholder="Search" >
+                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+
             {% if app.user %}
             <span class="handwriting light-text">Hello {{ app.user.username }}</span>
             {% endif %}
         <a href="https://www.instagram.com/the_breakfast_show/" target="_blank"><img class="insta-logo" src="{{ asset('build/images/logo/instagram.svg') }}" alt="instagram"></a>
         <a href="https://www.facebook.com/thebreakfastshow1" target="_blank"><img class="fb-logo" src="{{ asset('build/images/logo/facebook.svg') }}" alt="facebook"></a>
+
         </div>
     </nav>

@@ -3,6 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Episode;
+use App\Entity\ListIngredient;
+use App\Entity\Preparation;
+use App\Entity\Ingredient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +20,22 @@ class EpisodeRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Episode::class);
+    }
+
+    public function findBySearch($value)
+    {
+        return $this->createQueryBuilder('e')
+            ->leftJoin(Preparation::class, 'p', 'WITH', 'e.id = p.episode')
+            ->leftJoin(ListIngredient::class, 'li', 'WITH', 'e.id = li.episode')
+            ->leftJoin(Ingredient::class, 'i', 'WITH', 'li.ingredient = i.id')
+            ->andWhere('e.recipename LIKE :val')
+            ->orWhere('i.name LIKE :val')
+            ->orWhere('e.title LIKE :val')
+            ->orWhere('p.text LIKE :val')
+            ->setParameter('val', '%'. $value . '%')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**
