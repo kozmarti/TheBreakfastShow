@@ -96,6 +96,23 @@ body{
     margin-left: -200px;
   }
 }
+
+
+.blue-text-hoverable{
+  color: $darker-blue;
+  &:hover{
+    color: $dark-blue !important;
+  }
+}
+
+.blue-text-dark {
+  color: $darker-blue;
+}
+
+.blue-text-light {
+  color: $dark-blue;
+}
+
 // Large devices (desktops, 992px and up)
 //@media (min-width: 992px) { ... }
 

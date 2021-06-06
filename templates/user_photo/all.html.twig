@@ -9,16 +9,29 @@
 
     <div class="d-flex flex-column flex-nowrap align-items-center use-shadow image-shadow m-4">
         {% if user_photo.isApproved %}
-          <div class="simple-police  text-success d-flex justify-content-between"> <div><i class="fas fa-check"></i>Approved </div><a class="simple-police ml-5 btn-danger" href="{{ path('photo_approval', {'id': user_photo.id}) }}"> <i class="fas fa-times"></i>  Withdraw</a> </div>
+          <div class="simple-police  text-success d-flex justify-content-between m-2"> <div>Status: <i class="fas fa-check"></i>Approved </div> </div>
 
             {% else %}
-              <div class="simple-police text-warning d-flex justify-content-between"> <div><i class="fas fa-hourglass-half"></i> Pending </div> <a class="simple-police ml-5 btn-success" href="{{ path('photo_approval', {'id': user_photo.id}) }}"><i class="fas fa-check"></i> Approve</a></div>
+              <div class="simple-police text-warning d-flex justify-content-between m-2"> <div>Status: <i class="fas fa-hourglass-half"></i> Pending </div> </div>
 
         {% endif %}
         <img class="small-image image-shadow m-2" src="/uploads/{{user_photo.image }}" alt="image of {{ user_photo.episode.recipename }}">
         <a class="episode-title-text simple-police dark-text" href="{{ path('episode_show', {'slug': user_photo.episode.slug}) }}">{{ user_photo.episode.recipename }}</a>
-        <div class="simple-police dark-text">Uploaded by {{ user_photo.user.username }}</div>
+        <div class="simple-police light-text">Uploaded by {{ user_photo.user.username }}</div>
+<div>
+    {% if user_photo.isApproved %}
+        <div class="simple-police  text-success d-flex justify-content-between"> <a class="simple-police ml-5 btn-danger rounded p-2 m-1 text-decoration-none" href="{{ path('photo_approval', {'id': user_photo.id}) }}"> <i class="fas fa-times"></i>  Withdraw</a> </div>
+
+    {% else %}
+        <div class="simple-police text-warning d-flex justify-content-between"> <a class="simple-police ml-5 btn-success rounded p-2 m-1 text-decoration-none" href="{{ path('photo_approval', {'id': user_photo.id}) }}"><i class="fas fa-check"></i> Approve</a></div>
+
+    {% endif %}
+
+</div>
+
+
     </div>
+
 
 
     {% endfor %}

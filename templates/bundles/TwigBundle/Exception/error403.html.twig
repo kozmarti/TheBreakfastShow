@@ -1,7 +1,70 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% include 'home/component/_nav.html.twig' %}
+    <nav class="navbar navbar-expand-lg navbar-light use-shadow">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <a class="navbar-brand" href="{{ path('home') }}"> <img class="navbar-logo" src="{{ asset('build/images/logo/logo_orange.png') }}" alt="tbf-logo"></a>
+
+        <div class="collapse navbar-collapse bg-white" id="navbarToggler">
+            <ul class="navbar-nav mt-2 mt-lg-0 handwriting large-text">
+                <li class="nav-item ">
+                    <a class="nav-link light-text" href="{{ path('welcome') }}">About Me </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link light-text" href="{{ path('season_show', {'slug': 'season-1-winter'} ) }}">Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link light-text" href="{{ path('fun_fact') }}">FunFacts</a>
+                </li>
+                {% if app.user %}
+                    <li class="nav-item  ">
+                        <a class="nav-link light-text" href="{{ path('recipes_my_recipes') }}">My Recipes</a>
+                    </li>
+                    <li class="nav-item  {% if login %} active {% endif %}">
+                        <a class="nav-link light-text" href="{{ path('app_logout') }}">LogOut</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item ">
+                        <a class="nav-link light-text" href="{{ path('app_login') }}">Login</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('user_photo_all') }}">Approve User photos </a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        </div>
+
+
+        <div class="d-flex">
+            <form class="searchbar" action="{{ path('search') }}" method="get">
+                <div>
+                    <input class="handwriting rounded light-text" type="text" name="to-search" placeholder="Search" >
+                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+
+            {% if app.user %}
+                <span class="handwriting light-text">Hello {{ app.user.username }}</span>
+            {% endif %}
+            <a href="https://www.instagram.com/the_breakfast_show/" target="_blank"><img class="insta-logo" src="{{ asset('build/images/logo/instagram.svg') }}" alt="instagram"></a>
+            <a href="https://www.facebook.com/thebreakfastshow1" target="_blank"><img class="fb-logo" src="{{ asset('build/images/logo/facebook.svg') }}" alt="facebook"></a>
+
+        </div>
+    </nav>
+
+<div class="wide-container-wrapper">
+    <div class="narrow-container">
+        <div class="simple-police dark-text large-text align-self-start">
+            Oups, you do not have access for this page, an error 403 occurred.
+        </div>
+    </div>
+</div>
 
 {% endblock %}

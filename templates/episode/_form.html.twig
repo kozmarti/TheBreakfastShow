@@ -7,7 +7,7 @@
     {{ form_row(form.preparation) }}
     {{ form_row(form.images) }}
 
-    <button type="button" class="add_item_link" data-collection-holder-class="listIngredients">Add a listIngredient</button>
+    <button type="button" class="add_item_link blue-button m-3 p-2" data-collection-holder-class="listIngredients">Add new ingredient</button>
 
     <ul class="listIngredients" data-prototype="{{ form_widget(form.listIngredients.vars.prototype)|e('html_attr') }}">
         {% for listIngredient in form.listIngredients %}
@@ -18,5 +18,5 @@
         {% endfor %}
     </ul>
 
-    <button class="login-button m-3"> Next</button>
+    <button class="blue-button m-3 p-2"> Save </button>
 {{ form_end(form) }}

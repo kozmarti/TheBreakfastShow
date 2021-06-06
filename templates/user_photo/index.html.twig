@@ -3,15 +3,19 @@
     {% include 'home/component/_nav.html.twig' %}
 
 <h1> User photos for <a class="episode-title-text simple-police dark-text" href="{{ path('episode_show', {'slug': episode.slug}) }}"> {{  episode.title }} - {{  episode.recipename }}</a></h1>
-<div class="d-flex flex-wrap justify-content-center m-5">
+    {% for message in app.flashes('notice') %}
+        <div class="alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="d-flex flex-wrap justify-content-center m-5">
+
         {% for user_photo in user_photos %}
     <div class="d-flex flex-column flex-nowrap align-items-center use-shadow image-shadow m-4">
             <img class="small-image image-shadow m-2" src="/uploads/{{user_photo.image }}" alt="image of {{ user_photo.episode.recipename }}">
         <div class="simple-police dark-text">Uploaded by {{ user_photo.user.username }}</div>
     </div>
 
-                    <a href="{{ path('user_photo_show', {'id': user_photo.id}) }}">show</a>
-                    <a href="{{ path('user_photo_edit', {'id': user_photo.id}) }}">edit</a>
 
         {% else %}
 

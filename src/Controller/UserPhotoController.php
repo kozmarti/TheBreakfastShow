@@ -89,6 +89,10 @@ class UserPhotoController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userPhoto);
             $entityManager->flush();
+            $this->addFlash(
+                'notice',
+                'Your photo is successfully uploaded. It will appear on the website as soon as the admin approves it.'
+            );
 
             return $this->redirectToRoute('user_photo_index', array('slug' => $episode->getSlug()));
         }
@@ -121,6 +125,7 @@ class UserPhotoController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userPhoto);
             $entityManager->flush();
+
 
             return $this->redirectToRoute('user_photo_index', array('slug' => $episode->getSlug()));
         }

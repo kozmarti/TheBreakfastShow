@@ -27,10 +27,11 @@
 
 
 
-    <div class="episode-box d-flex flex-column justify-content-center align-items-center">
+    <div class="episode-box d-flex flex-column align-items-center mb-5">
+<div>
         <div class="d-flex">
 
-            <div class="use-shadow rounded  m-1">
+            <div class="use-shadow rounded stretch-item m-1 prep-box">
                 <div class="simple-police dark-text"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
                 <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i>
                 </div>
@@ -47,16 +48,16 @@
             </div>
             {% if app.user %}
                 <div class="use-shadow rounded m-1">
-                    <span class="heart-color"> <i id="{{ app.user.id }}-{{ episode.id }}" class="{% if is_favorite %}fas fa-heart{% else %}far fa-heart{% endif %}"></i></span>
+                    <span class="heart-color"> <i id="{{ app.user.id }}-{{ episode.id }}" class="{% if is_favorite %}fas fa-heart{% else %}far fa-heart{% endif %} fa-3x ajax-heart p-3"></i></span>
                 </div>
             {% endif %}
         </div>
 
         <div class="d-flex">
             <img class="extra-large-image use-shadow rounded meal-photo m-5" src="/uploads/{{episode.images.meal}}" alt="k">
-            <div class="use-shadow rounded m-1">
+            <div class="use-shadow rounded m-1 prep-box stretch-item">
                 <div>
-                    <div class="simple-police light-text"><i class="fas fa-shopping-cart"></i> Ingredients: </div>
+                    <div class="simple-police light-text"><i class="fas fa-shopping-cart"></i> Shopping list: </div>
                     <div class="simple-police light-text"> <i class="fas fa-users"></i> :
                         {% if multiplier is not same as(0) %}
                             {{multiplier }}
@@ -65,12 +66,14 @@
                         {% endif %}
                     </div>
                     <form class="align-self-end" action="{{ path('episode_show', {'slug': episode.slug}) }}" method="post">
-                        <div class="m-3"> Ingredients for <input class="calc-input m-2" type="number" name="quantity" step="1"> persons </div>
+                        <div class="m-3"> Recalculate ingredients for <input class="calc-input m-2" value="{{episode.person }}" type="number" name="quantity" step="1"> persons </div>
                         <button type="submit" class="calc-button"><i class="fas fa-calculator"></i> calculate!</button>
 
                     </form>
                 </div>
-                <div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="sticky-note-paper p-2 shadow">
+                    <i class="fas fa-map-pin"></i>
                     <ul class="handwriting dark-text">
                         {% set i = "" %}
                         {% for ingr in episode.listingredients %}
@@ -105,6 +108,7 @@
                             {% endif %}
                         {% endfor %}
                     </ul>
+                    </div>
                 </div>
 
             </div>
@@ -112,36 +116,29 @@
 
 
         <div class="d-flex">
-
-            <div class="use-shadow rounded m-1 simple-police light-text">
-                <div class="dark-text"><i class="fas fa-bread-slice"></i> Preparation:</div>
+            <div class="prep-box use-shadow rounded mr-2 simple-police light-text stretch-item">
+                <div class="d-flex flex-column align-items-center justify-content-center mt-5  prep-text ">
+                <div class="simple-police blue-text-dark p-3"> Preparation:</div>
+                    <div class="blue-text-light text-wrap">
                 {% apply markdown_to_html %}
                     {{episode.preparation.text }}
                 {% endapply %}
+                    </div>
             </div>
-
-
+            </div>
             <div>
                 <img class="small-image use-shadow rounded" src="/uploads/{{episode.images.ingredient}}" alt="Ingredients for {{ episode.recipename }}">
             </div>
+       </div>
 
 
-
-        </div>
         <div class="use-shadow rounded m-1 simple-police light-text">
-            <a class="episode-title-text simple-police dark-text" href="{{ path('user_photo_index', {'slug': episode.slug}) }}"> Upload your own photo</a>
-
+            <a class="episode-title-text simple-police dark-text" href="{{ path('user_photo_index', {'slug': episode.slug}) }}"> Take a look how others prepared it <i class="far fa-grin-hearts "></i></a>
         </div>
 
     </div>
-{#
-    <div>
-        <img class="image-blur extra-large-image use-shadow rounded meal-photo m-5" src="/uploads/{{episode.images.meal}}" alt="k">
-        <img class="image-sharp extra-large-image use-shadow rounded meal-photo m-5" src="/uploads/{{episode.images.meal}}" alt="k">
+
     </div>
-#}
-
-
 
 
      {% block javascripts %}
