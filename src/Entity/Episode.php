@@ -71,7 +71,7 @@ class Episode
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserPhoto::class, mappedBy="episode", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=UserPhoto::class, mappedBy="episode", orphanRemoval=true, cascade={"persist", "remove"})
      */
     private $userPhotos;
 

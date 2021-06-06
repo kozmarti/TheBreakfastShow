@@ -45,7 +45,7 @@ class UserPhoto
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Episode::class, inversedBy="userPhotos")
+     * @ORM\ManyToOne(targetEntity=Episode::class, inversedBy="userPhotos", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $episode;
@@ -60,7 +60,7 @@ class UserPhoto
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
