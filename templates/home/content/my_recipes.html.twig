@@ -11,7 +11,7 @@
         </div>
     {% endfor %}
         {% else %}
-        <div> You have not saved any favourite recipes yet. You can search in the collection of breakfast recipes </div>
+            <div class="simple-police dark-text"> You have no favourite recipes yet. Go to <a href="{{ path('season_show', {'slug': 'season-1-winter'} ) }}">recipes</a>  and use the<span class="heart-color"> <i class="fas fa-heart"></i></span> to save them here.  </div>
     {% endif %}
     </div>
 {% endblock %}

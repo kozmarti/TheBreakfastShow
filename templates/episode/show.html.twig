@@ -31,7 +31,7 @@
         <div>
             <div class="d-flex">
 
-                <div class="use-shadow rounded stretch-item m-1 prep-box p-3 d-flex flex-column">
+                <div class="use-shadow rounded stretch-item-always m-1 prep-box p-3 d-flex flex-column">
                     <div class="d-flex justify-content-between">
                         <div class="simple-police dark-text large-text"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
                         <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i>
@@ -40,7 +40,7 @@
                         <i class="far fa-clock"></i> {{ episode.preparationtime ? episode.preparationtime|date('H:i:s') : ''  }}
                         </div>
                     </div>
-                    <div class="simple-police light-text align-self-center">
+                    <div class="large-text font-weight-bold simple-police light-text align-self-center">
                     {{episode.recipename }}
                     </div>
                 {% if is_granted('ROLE_ADMIN') %}
@@ -55,17 +55,21 @@
             {% endif %}
         </div>
 
-        <div class="d-flex">
+        <div class="d-flex episode-show-small-screen">
             <div class="align-self-center">
-            <img class="extra-large-image use-shadow rounded meal-photo m-1" src="/uploads/{{episode.images.meal}}" alt="image of {{episode.recipename}}">
+            <img class="image-size-change use-shadow rounded meal-photo m-1" src="/uploads/{{episode.images.meal}}" alt="image of {{episode.recipename}}">
             </div>
             <div class="use-shadow rounded m-1 p-3 prep-box stretch-item">
                 <div class="d-flex justify-content-between m-1 mb-5">
-                    <div class="simple-police light-text p-3"> Shopping list: </div>
+                    <div class="font-weight-bold simple-police light-text p-3"> Shopping list: </div>
 
-                    <form class="align-self-end simple-police light-text" action="{{ path('episode_show', {'slug': episode.slug}) }}" method="post">
-                        <i class="fas fa-users"></i> <input class="calc-input" value="{% if multiplier is not same as(0) %}{{multiplier }}{% else %}{{episode.person }}{% endif %}" type="number" name="quantity" step="1">
-                        <button type="submit" class="blue-button m-0 p-2"><i class="fas fa-arrow-right"></i></button>
+                    <form class="align-self-end simple-police light-text d-flex align-items-center" action="{{ path('episode_show', {'slug': episode.slug}) }}" method="post">
+                        <i class="fas fa-users m-1"></i>
+                        <div class="quantity">
+
+                        <input class="calc-input light-text" value="{% if multiplier is not same as(0) %}{{multiplier }}{% else %}{{episode.person }}{% endif %}" type="number" name="quantity" step="1">
+                        </div>
+                            <button type="submit" class="blue-button m-0 p-2"><i class="fas fa-arrow-right"></i></button>
 
                     </form>
                 </div>
@@ -113,10 +117,10 @@
         </div>
 
 
-        <div class="d-flex">
+        <div class="d-flex episode-show-small-screen">
             <div class="prep-box use-shadow rounded m-1 p-3 simple-police light-text stretch-item">
                 <div class="prep-text ">
-                <div class="simple-police blue-text-dark p-3"> Preparation:</div>
+                <div class="font-weight-bold simple-police blue-text-dark p-3"> Preparation:</div>
                     <div class="blue-text-light text-wrap">
                 {% apply markdown_to_html %}
                     {{episode.preparation.text }}

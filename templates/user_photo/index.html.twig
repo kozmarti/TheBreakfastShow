@@ -18,13 +18,13 @@
 
 
         {% else %}
-
+<div class="d-flex flex-column justify-content-center align-items-center">
             <div class="m-5 simple-police dark-text"> No user photos yet. Be the first to share your skills. </div>
 
             {% if not app.user %}
-                <a class="episode-title-text simple-police dark-text" href="{{ path('app_register') }}"> Register </a>
+               <div><a class="episode-title-text simple-police dark-text" href="{{ path('app_register') }}"> Register </a></div>
             {% endif %}
-
+</div>
         {% endfor %}
 </div>
         {% if app.user %}
