@@ -3,23 +3,44 @@
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
 
-    <div class="about-me-bg"></div>
-
-    <div class="fact-box">
-
-    <div class="container d-flex flex-column align-items-center funfact-container">
-    <h1> <i class="far fa-lightbulb"></i>  Did you know ?<a class="random-button" href="{{ path('fun_fact') }}"> RandomFact </a> </h1>
-        <img class="small-image fact-photo" src="{{ random_fact.image }}" alt="">
 
 
+    <div class="d-flex flex-column align-items-center">
+    <h1 class="actors-title simple-police m-5 p-5">
 
-        <div class="box">
-<ul class="actors-list">
+        Actors:
+
+    </h1>
+      
+
+
+
+
+        <div class="funfact-box">
+<ul class="actors-list-two pt-3">
+
     {% for actor in actors %}
-    <li class="item-{{ loop.index }}">{{ actor.name }}</li>
+
+        
+    <li class="simple-police m-3"><a href="{{ path('show_fun_fact', {'funfactname': actor.name}) }}">{{ actor.name }} </a></li>
 {% endfor %}
 </ul>
+
+
+
+                <ul class="actors-list-one pt-3">
+
+                    {% for actor in actors %}
+                        <li class="simple-police m-3"><a href="{{ path('show_fun_fact', {'funfactname': actor.name}) }}">{{ actor.name }} </a> </li>
+                    {% endfor %}
+                </ul>
+
         </div>
+
+
+
     </div>
-    </div>
+
+
+
 {% endblock %}

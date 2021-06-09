@@ -2,7 +2,7 @@
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
     <div class="d-flex flex-column align-items-center m-5">
-<div class="dark-text simple-police large-text"> User photos for <a class="episode-title-text simple-police dark-text" href="{{ path('episode_show', {'slug': episode.slug}) }}"><i class="fas fa-quote-left"></i> {{  episode.title }} <i class="fas fa-quote-right"></i> - {{  episode.recipename }}</a></div>
+<div class="dark-text simple-police large-text"> User photos for <a class="episode-title-text simple-police blue-text-hoverable" href="{{ path('episode_show', {'slug': episode.slug}) }}"><i class="fas fa-quote-left"></i> {{  episode.title }} <i class="fas fa-quote-right"></i> - {{  episode.recipename }}</a></div>
     {% for message in app.flashes('notice') %}
         <div class="alert-success alert">
             {{ message }}
@@ -19,10 +19,10 @@
 
         {% else %}
 <div class="d-flex flex-column justify-content-center align-items-center">
-            <div class="m-5 simple-police dark-text"> No user photos yet. Be the first to share your skills. </div>
+            <div class="mt-5 simple-police dark-text"> No user photos yet. Be the first to share your skills. </div>
 
             {% if not app.user %}
-               <div><a class="episode-title-text simple-police dark-text" href="{{ path('app_register') }}"> Register </a></div>
+               <div><a class="episode-title-text simple-police dark-text" href="{{ path('upload_register_redirect', {'slug': episode.slug}) }}"> Register </a></div>
             {% endif %}
 </div>
         {% endfor %}

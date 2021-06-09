@@ -6,6 +6,7 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -96,6 +97,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             return new RedirectResponse($targetPath);
         }
 
+        $session = new Session();
+        if ($session->get('redirect')) {
+            $session->set('redirect', false);
+            return new RedirectResponse($this->urlGenerator->generate('user_photo_index', array('slug' => $session->get('slug'))));
+        }
         return new RedirectResponse($this->urlGenerator->generate('welcome'));
     }
 

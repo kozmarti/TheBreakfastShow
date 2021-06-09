@@ -75,3 +75,10 @@
 .searchbar {
   margin: 5px;
 }
+
+
+@media (max-width: 630px) {
+.disappear-mobile{
+  display: none !important;
+}
+}

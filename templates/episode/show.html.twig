@@ -36,17 +36,19 @@
                         <div class="simple-police dark-text large-text"> <i class="fas fa-play"></i> Episode {{episode.number }}. :
                         <i class="fas fa-quote-left"></i> {{episode.title }}  <i class="fas fa-quote-right"></i>
                         </div>
-                        <div class="blue-text-dark simple-police">
-                        <i class="far fa-clock"></i> {{ episode.preparationtime ? episode.preparationtime|date('H:i:s') : ''  }}
+                        <div class="blue-text-dark simple-police d-flex flex-nowrap">
+                        <i class="far fa-clock m-1"></i> {{ episode.preparationtime ? episode.preparationtime|date('H:i') : ''  }}
                         </div>
                     </div>
                     <div class="large-text font-weight-bold simple-police light-text align-self-center">
                     {{episode.recipename }}
                     </div>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a class="login-button m-3" href="{{ path('episode_edit', {'slug': episode.slug}) }}"><i class="fas fa-pen"></i> Edit</a>
+                    <div class="d-flex align-self-end">
+                    <a class="login-button m-2" href="{{ path('episode_edit', {'slug': episode.slug}) }}"><i class="fas fa-pen"></i></a>
                     {{ include('episode/_delete_form.html.twig') }}
-                {% endif %}
+                    </div>
+                        {% endif %}
                 </div>
             {% if app.user %}
                 <div class="use-shadow rounded m-1">

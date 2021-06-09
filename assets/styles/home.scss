@@ -99,7 +99,7 @@ body{
 
 
 .blue-text-hoverable{
-  color: $darker-blue;
+  color: $darker-blue !important;
   &:hover{
     color: $dark-blue !important;
   }

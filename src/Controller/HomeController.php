@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Episode;
 use App\Entity\Favorite;
+use App\Entity\FunFact;
 use App\Entity\User;
 use App\Repository\EpisodeRepository;
 use App\Repository\FavoriteRepository;
@@ -16,6 +17,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Extra\Markdown\MarkdownExtension;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,10 +67,23 @@ class HomeController extends AbstractController
         $funfacts=$funFactRepository->findAll();
         $fact= $funfacts[array_rand($funfacts)];
 
-
-        return $this->render('home/content/funfact.html.twig', ['random_fact' => $fact, 'actors' => $funfacts,
+        $end1 = intdiv(count($funfacts),2)-1;
+        $start2 =intdiv(count($funfacts),2);
+        $end2 = count($funfacts) - 1;
+        return $this->render('home/content/funfact.html.twig', ['random_fact' => $fact, 'actors' => $funfacts, 'end1' => $end1, 'end2' => $end2, 'start2' => $start2,
         'aboutme' => false,   'funfacts' => true,  'recipes' => false,  'login' => false, 'myrecipes' => false]);
     }
+
+    /**
+     * @Route("/funfact/{funfactname}", name="show_fun_fact")
+     */
+    public function funfactShow(Request $request, FunFactRepository $funFactRepository, IngredientRepository $ingredientRepository): Response
+    {
+        $funfact= $request->attributes->get('funfactname');
+        $funfactToShow=$funFactRepository->findOneBy(['name' => $funfact]);
+        return $this->render('home/content/show_funfact.html.twig', ['random_fact' => $funfactToShow, 'aboutme' => false,   'funfacts' => true,  'recipes' => false,  'login' => false, 'myrecipes' => false]);
+    }
+
 
     /**
      * @Route("/favorites", name="favorites")
@@ -109,5 +124,19 @@ class HomeController extends AbstractController
         $result = $episodeRepository->findBySearch($toSearch);
         return $this->render('home/content/search_result.html.twig', ['episodes' => $result, 'to_search' => $toSearch, 'count_result' => count($result),
         'aboutme' => false,   'funfacts' => false,  'recipes' => false,  'login' => false, 'myrecipes' => false]);
+    }
+
+    /**
+     * @Route("/upload/redirect/{slug}", name="upload_register_redirect", methods={"GET"})
+     */
+
+    public function loginRedirect(Request $request): Response
+    {
+        $episode= $request->attributes->get('slug');
+        $session = new Session();
+        $session->set('redirect', true);
+        $session->set('slug', $episode);
+
+        return $this->redirectToRoute('app_register');
     }
 }

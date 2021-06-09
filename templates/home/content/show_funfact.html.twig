@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'home/component/_nav.html.twig' %}
+
+
+
+    <div class="d-flex flex-column align-items-center">
+        <h1 class="actors-title simple-police m-5 p-5 fact-title">
+
+            {{ random_fact.name }}
+
+        </h1>
+        <img class="use-shadow rounded fact-photo" src="{{ random_fact.image }}" alt="">
+        <a href="{{ path('fun_fact') }}" class="m-5 episode-title-text simple-police dark-text "> <i class="fas fa-arrow-left"></i> Go back to actors</a>
+
+
+    </div>
+
+
+
+{% endblock %}

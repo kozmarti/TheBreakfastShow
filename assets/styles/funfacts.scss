@@ -1,59 +1,77 @@
-$item-count: 100;
-$item: 1 / $item-count;
+.actors-list-one {
+  animation: moveSlideshowOne 60s linear infinite;
+  list-style: none;
+  & a {
+    font-style: italic;
+    font-size: 1.4em;
+    color: white !important;
+    letter-spacing: .2rem;
+  }
+}
+@keyframes moveSlideshowOne {
+  100% {
+    transform: translateY(-200%);
+  }
+}
 
-.box {
-  height: 100vh;
-  margin: auto;
+.actors-list-two {
+  animation: moveSlideshowTwo 60s linear infinite;
+  list-style: none;
+  & a {
+    font-style: italic;
+    font-size: 1.4em;
+    color: white !important;
+    letter-spacing: .2rem;
+  }
+}
+.actors-title{
+  font-size: 1.4em !important;
+  color: $dark-brown;
+}
+@keyframes moveSlideshowTwo {
+  50% {
+    transform: translateY(-100%);
+  }
+  50.01%{
+    transform: translateY(100%);
+  }
+  100%{
+    transform: translateY(0%);
+  }
+}
+
+.funfact-box {
+  height:882px;
   overflow: hidden;
-  position: relative;
-  &::before {
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    content: '';
-    height: 10px;
-    position: absolute;
-    background: linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,0));
-  }
-  &::after {
-    left: 0;
-    bottom: 0;
-    z-index: 1;
-    width: 100%;
-    content: '';
-    height: 10px;
-    position: absolute;
-    background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,1));
+
+}
+
+
+@media (min-width: 510px) {
+.fact-photo {
+  width: 500px;
+  height: auto;
+} }
+
+
+@media (max-width: 509px) {
+  .fact-photo {
+    width: 350px;
+    height: auto;
   }
 }
 
-.actors-list {
-  margin: 0;
-  padding: 0;
-  animation: scrollUp 10s 0s infinite forwards;
-  li {
-    opacity: 1;
-    height: 20px;
-    padding: 10px;
-    list-style: none;
-  }
+    .fact-title {
+  animation: fastmove 15s infinite;
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
+@keyframes fastmove {
+  2%   { transform: rotate(8deg)
   }
-  to {
-    opacity: 0;
-  }
-}
+  4%   {transform: rotate(-8deg)}
+  6%   { transform: rotate(8deg)}
+  7%   {transform: rotate(0deg)}
 
-@keyframes scrollUp {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY((-100% / $item-count) * ($item-count - 1));
-  }
+  100%   {transform: rotate(0deg) }
+
 }

@@ -7,16 +7,20 @@
     {{ form_row(form.preparation) }}
     {{ form_row(form.images) }}
 
-    <button type="button" class="add_item_link blue-button m-3 p-2" data-collection-holder-class="listIngredients">Add new ingredient</button>
+
 
     <ul class="listIngredients" data-prototype="{{ form_widget(form.listIngredients.vars.prototype)|e('html_attr') }}">
         {% for listIngredient in form.listIngredients %}
+
             <li>{{ form_row(listIngredient.quantity) }}</li>
             <li>{{ form_row(listIngredient.subIngredient) }}</li>
             <li>{{ form_row(listIngredient.measure) }}</li>
             <li>{{ form_row(listIngredient.ingredient) }}</li>
+
         {% endfor %}
+
     </ul>
 
-    <button class="blue-button m-3 p-2"> Save </button>
+<button type="button" class="add_item_link blue-button m-3 p-2" data-collection-holder-class="listIngredients">Add new ingredient</button>
+   <div> <button class="blue-button m-3 p-2"> Save </button></div>
 {{ form_end(form) }}
