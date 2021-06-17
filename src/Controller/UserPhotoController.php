@@ -111,6 +111,7 @@ class UserPhotoController extends AbstractController
     /**
      * @Route("/new/{slug}", name="user_photo_new", methods={"GET","POST"})
      *  @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
+     *
      */
     public function new(Request $request, Episode $episode): Response
     {
@@ -168,6 +169,7 @@ class UserPhotoController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_photo_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, UserPhoto $userPhoto): Response
     {

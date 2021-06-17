@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/recipes", name="recipes_")
@@ -40,6 +41,7 @@ class RecipeController extends AbstractController
 
     /**
      * @Route("/my-recipes", name="my_recipes")
+     * @IsGranted("ROLE_USER")
      */
     public function myrecipes(EpisodeRepository $episodeRepository, FavoriteRepository $favoriteRepository): Response
     {

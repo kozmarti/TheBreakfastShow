@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block body %}
         {% include 'home/component/_nav.html.twig' %}
-<div class="about-me-bg"></div>
+<div class="wide-container-wrapper">
 
-<div class="about-me-text">
-    <h1>Edit Episode</h1>
+<div class="narrow-container">
+    <h1 class="simple-police dark-text ">Edit Episode</h1>
 
     {{ include('episode/_form.html.twig', {'button_label': 'Update'}) }}
     
+</div>
 </div>
 {% endblock %}

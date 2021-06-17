@@ -29,10 +29,9 @@
                     </li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('user_photo_all') }}">Approve User photos </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('user_photo_all') }}">Approve User photos </a>
+                    </li>
                 {% endif %}
             </ul>
 

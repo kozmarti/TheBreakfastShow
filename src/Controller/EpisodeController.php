@@ -69,7 +69,7 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="episode_show", methods={"GET", "POST"})
+     * @Route("/{slug}", name="episode_show", methods={"GET"})
      * @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
      */
 
@@ -78,11 +78,25 @@ class EpisodeController extends AbstractController
         $user = $this->getUser();
         $isFavorite = $favoriteRepository->findOneBy(['user' => $user,'episode' => $episode]);
         $seasons = $seasonRepository->findAll();
-        $multiplier = $request->request->all();
-        if ($multiplier) {
-            $multiplier=  $multiplier['quantity'];
-        } else {
-            $multiplier=0;
+        $multiplier = $request->get('quantity');
+
+        if (is_null($multiplier)) {
+            $multiplier = 0;
+        }elseif ($multiplier < 1){
+            $multiplier = 0;
+            $this->addFlash(
+                'number-warning',
+                'Please define a valid number of persons'
+
+            );
+
+        }elseif (floor($multiplier) != $multiplier || ceil($multiplier) != $multiplier ){
+            $multiplier = 0;
+            $this->addFlash(
+                'number-warning',
+                'Please define a valid number of persons'
+            );
+
         }
 
         return $this->render('episode/show.html.twig', [
@@ -96,6 +110,7 @@ class EpisodeController extends AbstractController
     /**
      * @Route("/{slug}/edit", name="episode_edit", methods={"GET","POST"})
      * @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Episode $episode, IngredientRepository $ingredientRepository): Response
     {
@@ -124,6 +139,7 @@ class EpisodeController extends AbstractController
 
     /**
      * @Route("/{id}", name="episode_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Episode $episode): Response
     {
