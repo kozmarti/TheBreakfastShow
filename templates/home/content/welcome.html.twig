@@ -62,7 +62,6 @@ let imageDataBase = [];
         imageDataBase.push("/uploads/{{ images[i] }}");
 {% endfor %}
 order = [0,1,2,4,7,6,5,3]
-console.log(imageDataBase);
 setInterval(myTimer, 6000);
 first_change_index = 0;
 second_change_index = 4;
@@ -82,7 +81,6 @@ function myTimer() {
     imageDataBase.shift();
     imageDataBase.push(first_clear);
     imageDataBase.push(second_clear);
-    console.log(imageDataBase);
     if (first_change_index > 6 ) {
         first_change_index = 0;
         second_change_index += 1;
