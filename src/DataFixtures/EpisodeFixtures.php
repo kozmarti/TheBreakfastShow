@@ -30,9 +30,7 @@ class EpisodeFixtures extends Fixture implements ContainerAwareInterface, Depend
     public function getDependencies()
 
     {
-
         return [SeasonFixtures::class];
-
     }
 
     public function load(ObjectManager $manager)

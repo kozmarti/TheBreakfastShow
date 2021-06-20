@@ -6,9 +6,8 @@
    <div class="wide-container welcome-wide-container">
 
        {% for i in 0..3 %}
-
            <div class="1size3-flex-item">
-       <img class="image-{{ i }} {% if loop.index is even%} small-image{% else%}  large-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="">
+                <img class="image-{{ i }} {% if loop.index is even%} small-image{% else%}  large-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="image {{ i }}">
            </div>
        {% endfor %}
 
@@ -23,8 +22,6 @@
             you can get proof of the above listed characteristics, get to know me and what I represent.
            </p>
         <h5 class="handwriting dark-text">But first, where it got started?</h5>
-
-
         <p  class="simple-police light-text">When I was a university student  <i class="fas fa-graduation-cap"></i> and studied for my exams, I have always had the tv on. I wonder if it’s
             only me… Not because I wanted to distract my attention on purpose but because in this way, I could
             make myself believe that it was not all about studying (boring...) but also letting some fun in. This fun
@@ -39,10 +36,11 @@
         </div>
     </div>
     </div>
+
        {% for i in 4..7 %}
-        <div class="1size3-flex-item">
-           <img class=" image-{{ i }} {% if loop.index is even%} large-image{% else%}small-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="">
-        </div>
+            <div class="1size3-flex-item">
+                <img class=" image-{{ i }} {% if loop.index is even%} large-image{% else%}small-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="image {{ i }}">
+            </div>
        {% endfor %}
 
 
@@ -72,8 +70,7 @@ function myTimer() {
     let first_clear = changingImages[order[first_change_index]].src;
     let second_clear = changingImages[order[second_change_index]].src
     changingImages[order[first_change_index]].classList.remove("appear-effect");
-    changingImages[order[s
-    econd_change_index]].classList.remove("appear-effect");
+    changingImages[order[second_change_index]].classList.remove("appear-effect");
     changingImages[order[first_change_index]].classList.add("disappear-effect");
     changingImages[order[second_change_index]].classList.add("disappear-effect");
     console.log("before");
@@ -97,7 +94,6 @@ function myTimer() {
         first_change_index += 1;
         second_change_index += 1;
     }
-
 }
 
 </script>

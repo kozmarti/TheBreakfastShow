@@ -65,14 +65,14 @@
                 <div class="d-flex justify-content-between m-1 mb-5">
                     <div class="font-weight-bold simple-police light-text p-3"> Shopping list: </div>
 
-                    <form class="align-self-end simple-police light-text d-flex align-items-center" action="{{ path('episode_show', {'slug': episode.slug}) }}" method="get">
+                    <form class="align-self-end simple-police light-text d-flex align-items-center" action="{{ path('episode_show', {'slug': episode.slug}) }}"
+                          method="get">
                         <i class="fas fa-users m-1"></i>
                         <div class="quantity">
-
-                        <input class="calc-input light-text" value="{% if multiplier is not same as(0) %}{{multiplier }}{% else %}{{episode.person }}{% endif %}" type="number" name="quantity" step="1" min="1">
+                        <input class="calc-input light-text" value="{% if multiplier is not same as(0) %}{{multiplier }}{% else %}{{episode.person }}{% endif %}"
+                               type="number" name="quantity" step="1" min="1">
                         </div>
                             <button type="submit" class="blue-button m-0 p-2"><i class="fas fa-arrow-right"></i></button>
-
                     </form>
 
                 </div>

@@ -60,10 +60,7 @@ class UserPhotoController extends AbstractController
                     $entityManager->flush();
                 }
                 return $this->redirectToRoute('user_photo_all');
-
             }
-
-
         }
         return $this->render('user_photo/all.html.twig', [
             'user_photos' => $userPhotoRepository->findAllOrderedByApproval(),

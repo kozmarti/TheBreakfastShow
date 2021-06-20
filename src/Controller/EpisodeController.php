@@ -59,6 +59,7 @@ class EpisodeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($episode);
             $entityManager->flush();
+            return $this->redirectToRoute('season_show', array('slug' => ($episode->getSeason()->getSlug())));
         }
 
         return $this->render('episode/new.html.twig', [
@@ -82,23 +83,13 @@ class EpisodeController extends AbstractController
 
         if (is_null($multiplier)) {
             $multiplier = 0;
-        }elseif ($multiplier < 1){
+        }elseif ($multiplier < 1 || (floor($multiplier) != $multiplier)){
             $multiplier = 0;
             $this->addFlash(
                 'number-warning',
-                'Please define a valid number of persons'
-
+                'Please give a valid number of persons'
             );
-
-        }elseif (floor($multiplier) != $multiplier || ceil($multiplier) != $multiplier ){
-            $multiplier = 0;
-            $this->addFlash(
-                'number-warning',
-                'Please define a valid number of persons'
-            );
-
         }
-
         return $this->render('episode/show.html.twig', [
             'seasons' => $seasons,
             'episode' => $episode,
