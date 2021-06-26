@@ -18,8 +18,10 @@ class ListIngredientType extends AbstractType
             ->add('quantity', IntegerType::class)
             ->add('subIngredient')
             ->add('measure',EntityType::class, [
+                'required' => false,
                 'class' => Measure::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+
             ])
             ->add('ingredient',IngredientType::class)
         ;

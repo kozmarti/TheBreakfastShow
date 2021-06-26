@@ -20,6 +20,11 @@
                     <li class="nav-item  {% if myrecipes %} active {% endif %}">
                         <a class="nav-link light-text" href="{{ path('recipes_my_recipes') }}">My Recipes</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('user_photo_all') }}">Approve User photos </a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item  {% if login %} active {% endif %}">
                         <a class="nav-link light-text" href="{{ path('app_logout') }}">LogOut</a>
                     </li>
@@ -28,17 +33,13 @@
                         <a class="nav-link light-text" href="{{ path('app_login') }}">Login</a>
                     </li>
                 {% endif %}
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('user_photo_all') }}">Approve User photos </a>
-                    </li>
-                {% endif %}
+
             </ul>
 
         </div>
 
 
-        <div class="d-flex disappear-mobile">
+        <div class="d-flex disappear-mobile rounded">
     {#
 
             <div class="col-7 d-flex justify-content-end">
@@ -62,7 +63,7 @@
             </form>
 
             {% if app.user %}
-            <span class="handwriting light-text">Hello {{ app.user.username }}</span>
+            <span class="handwriting light-text p-2">Hello {{ app.user.username }}</span>
             {% endif %}
         <a href="https://www.instagram.com/the_breakfast_show/" target="_blank"><img class="insta-logo" src="{{ asset('build/images/logo/instagram.svg') }}" alt="instagram"></a>
         <a href="https://www.facebook.com/thebreakfastshow1" target="_blank"><img class="fb-logo" src="{{ asset('build/images/logo/facebook.svg') }}" alt="facebook"></a>

@@ -176,7 +176,7 @@ class UserPhotoController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('user_photo_index');
+        return $this->redirectToRoute('user_photo_all');
     }
 
 

@@ -20,12 +20,15 @@
         <div class="simple-police light-text">Uploaded by {{ user_photo.user.username }}</div>
 <div>
     {% if user_photo.isApproved %}
-        <div class="simple-police  text-success d-flex justify-content-between"> <a class="simple-police ml-5 btn-danger rounded p-2 m-1 text-decoration-none" href="{{ path('photo_approval', {'id': user_photo.id}) }}"> <i class="fas fa-times"></i>  Withdraw</a> </div>
+        <div class="simple-police  text-success d-flex flex-column align-items-center justify-content-between"> <a class="simple-police ml-5 btn-warning rounded p-2 m-1 text-decoration-none" href="{{ path('photo_approval', {'id': user_photo.id}) }}"> <i class="fas fa-times"></i>  Withdraw</a>
+            {{ include('user_photo/_delete_form.html.twig') }}</div>
 
     {% else %}
-        <div class="simple-police text-warning d-flex justify-content-between"> <a class="simple-police ml-5 btn-success rounded p-2 m-1 text-decoration-none" href="{{ path('photo_approval', {'id': user_photo.id}) }}"><i class="fas fa-check"></i> Approve</a></div>
+        <div class="simple-police text-warning d-flex flex-column align-items-center justify-content-between"> <a class="simple-police ml-5 btn-success rounded p-2 m-1 text-decoration-none" href="{{ path('photo_approval', {'id': user_photo.id}) }}"><i class="fas fa-check"></i> Approve</a>
+            {{ include('user_photo/_delete_form.html.twig') }}</div>
 
     {% endif %}
+
 
 </div>
 

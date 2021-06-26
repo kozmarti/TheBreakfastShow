@@ -76,9 +76,15 @@
   margin: 5px;
 }
 
+.disappear-mobile {
+  background-color: white;
+  z-index: 1000;
+}
 
 @media (max-width: 630px) {
 .disappear-mobile{
   display: none !important;
+
 }
 }
+
