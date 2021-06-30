@@ -88,3 +88,19 @@
 }
 }
 
+.custom-file{
+  overflow: hidden;
+}
+
+#user_photo_imageFile_file, #episode_images_mealFile_file, #episode_images_ingredientFile_file, #episode_images_ownerphotoFile_file{
+  left: -83px;
+  opacity: 1;
+  font-family: 'Montserrat', sans-serif;
+  color: $dark-brown;
+}
+
+.col-form-label{
+  font-family: 'Montserrat', sans-serif;
+  color: $dark-brown;
+}
+

@@ -52,7 +52,7 @@
                 </div>
             {% if app.user %}
                 <div class="use-shadow rounded m-1">
-                    <span class="heart-color"> <i id="{{ app.user.id }}-{{ episode.id }}" class="{% if is_favorite %}fas fa-heart{% else %}far fa-heart{% endif %} fa-3x ajax-heart p-3"></i></span>
+                    <span class="heart-color favorite-heart"> <i id="{{ app.user.id }}-{{ episode.id }}" class="{% if is_favorite %}fas fa-heart{% else %}far fa-heart{% endif %} fa-3x ajax-heart p-3"></i></span>
                 </div>
             {% endif %}
         </div>
