@@ -102,13 +102,7 @@ class UserPhotoController extends AbstractController
             'aboutme' => false,  'aboutyou' => false,   'funfacts' => false,  'recipes' => true, 'login' => false, 'myrecipes' => false]);
 
     }
-
-
-
-
-
-
-
+    
     /**
      * @Route("/{id}", name="user_photo_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")

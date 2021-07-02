@@ -22,16 +22,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class EpisodeController extends AbstractController
 {
     /**
-     * @Route("/", name="episode_index", methods={"GET"})
-     */
-    public function index(EpisodeRepository $episodeRepository): Response
-    {
-        return $this->render('episode/index.html.twig', [
-            'episodes' => $episodeRepository->findAll(),
-        ]);
-    }
-
-    /**
      * @Route("/new", name="episode_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */
