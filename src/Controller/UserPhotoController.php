@@ -105,64 +105,9 @@ class UserPhotoController extends AbstractController
 
 
 
-    /**
-     * @Route("/new/{slug}", name="user_photo_new", methods={"GET","POST"})
-     *  @ParamConverter("episode", options={"mapping": {"slug": "slug"}})
-     *
-     */
-    public function new(Request $request, Episode $episode): Response
-    {
-        $userPhoto = new UserPhoto();
-        $form = $this->createForm(UserPhotoType::class, $userPhoto);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userPhoto->setUser($this->getUser());
-            $userPhoto->setEpisode($episode);
-            $userPhoto->setIsApproved(false);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($userPhoto);
-            $entityManager->flush();
 
 
-            return $this->redirectToRoute('user_photo_index', array('slug' => $episode->getSlug()));
-        }
 
-        return $this->render('user_photo/new.html.twig', [
-            'user_photo' => $userPhoto,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="user_photo_show", methods={"GET"})
-     */
-    public function show(UserPhoto $userPhoto): Response
-    {
-        return $this->render('user_photo/show.html.twig', [
-            'user_photo' => $userPhoto,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="user_photo_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, UserPhoto $userPhoto): Response
-    {
-        $form = $this->createForm(UserPhotoType::class, $userPhoto);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('user_photo_index');
-        }
-
-        return $this->render('user_photo/edit.html.twig', [
-            'user_photo' => $userPhoto,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{id}", name="user_photo_delete", methods={"DELETE"})

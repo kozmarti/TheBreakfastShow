@@ -45,7 +45,7 @@ class UserPhoto
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Episode::class, inversedBy="userPhotos", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Episode::class, inversedBy="userPhotos", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $episode;

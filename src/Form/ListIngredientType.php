@@ -15,7 +15,7 @@ class ListIngredientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity', IntegerType::class)
+            ->add('quantity', IntegerType::class, [ 'required' => false])
             ->add('subIngredient')
             ->add('measure',EntityType::class, [
                 'required' => false,
