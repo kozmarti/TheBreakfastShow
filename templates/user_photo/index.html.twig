@@ -11,10 +11,14 @@
 
         <div class="d-flex justify-content-center align-items-center flex-wrap m-5">
         {% for user_photo in user_photos %}
+
     <div class="d-flex flex-column flex-nowrap align-items-center use-shadow image-shadow m-4">
             <img class="small-image image-shadow m-2" src="/uploads/{{user_photo.image }}" alt="image of {{ user_photo.episode.recipename }}">
         <div class="simple-police dark-text">Made by {{ user_photo.user.username }}</div>
-
+{% if user_photo.user.username == app.user.username %}
+        hiiiii
+    {{ include('user_photo/_delete_form.html.twig') }}
+        {% endif %}
     </div>
 
 
@@ -26,6 +30,8 @@
                <div><a class="episode-title-text simple-police dark-text" href="{{ path('upload_register_redirect', {'slug': episode.slug}) }}"> Register </a></div>
             {% endif %}
 </div>
+
+
         {% endfor %}
 </div>
         {% if app.user %}

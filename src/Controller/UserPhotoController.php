@@ -30,7 +30,7 @@ class UserPhotoController extends AbstractController
 
         return $this->render('user_photo/all.html.twig', [
             'user_photos' => $userPhotoRepository->findAllOrderedByApproval(),
-            'aboutme' => false,  'funfacts' => false,  'recipes' => false, 'login' => false, 'myrecipes' => false
+            'aboutme' => false, 'funfacts' => false, 'recipes' => false, 'login' => false, 'myrecipes' => false
         ]);
     }
 
@@ -38,19 +38,19 @@ class UserPhotoController extends AbstractController
      * @Route("/approval/{id}", name="photo_approval", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function photoApproval(UserPhotoRepository $userPhotoRepository,Request $request ): Response
+    public function photoApproval(UserPhotoRepository $userPhotoRepository, Request $request): Response
     {
 
-        $photoToApproveID= $request->attributes->get('id');
-        if (is_numeric($photoToApproveID)){
+        $photoToApproveID = $request->attributes->get('id');
+        if (is_numeric($photoToApproveID)) {
 
-            if (is_null($userPhotoRepository->findOneBy(['id' =>$photoToApproveID]))){
+            if (is_null($userPhotoRepository->findOneBy(['id' => $photoToApproveID]))) {
                 return $this->redirectToRoute('user_photo_all');
             } else {
 
-                $isApproved = $userPhotoRepository->findOneBy(['id' =>$photoToApproveID])->getIsApproved();
-                $photo = $userPhotoRepository->findOneBy(['id' =>$photoToApproveID]);
-                if ($isApproved){
+                $isApproved = $userPhotoRepository->findOneBy(['id' => $photoToApproveID])->getIsApproved();
+                $photo = $userPhotoRepository->findOneBy(['id' => $photoToApproveID]);
+                if ($isApproved) {
                     $photo->setIsApproved(false);
                     $entityManager = $this->getDoctrine()->getManager();
                     $entityManager->flush();
@@ -64,7 +64,7 @@ class UserPhotoController extends AbstractController
         }
         return $this->render('user_photo/all.html.twig', [
             'user_photos' => $userPhotoRepository->findAllOrderedByApproval(),
-            'aboutme' => false,  'funfacts' => false,  'recipes' => false, 'login' => false, 'myrecipes' => false
+            'aboutme' => false, 'funfacts' => false, 'recipes' => false, 'login' => false, 'myrecipes' => false
         ]);
     }
 
@@ -97,25 +97,33 @@ class UserPhotoController extends AbstractController
 
         return $this->render('user_photo/index.html.twig', [
             'episode' => $episode,
-            'user_photos' => $userPhotoRepository->findBy(['episode'=>$episode, 'isApproved' => true]),
+            'user_photos' => $userPhotoRepository->findBy(['episode' => $episode, 'isApproved' => true]),
             'form' => $form->createView(),
-            'aboutme' => false,  'aboutyou' => false,   'funfacts' => false,  'recipes' => true, 'login' => false, 'myrecipes' => false]);
+            'aboutme' => false, 'aboutyou' => false, 'funfacts' => false, 'recipes' => true, 'login' => false, 'myrecipes' => false]);
 
     }
-    
+
     /**
      * @Route("/{id}", name="user_photo_delete", methods={"DELETE"})
-     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, UserPhoto $userPhoto): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$userPhoto->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($userPhoto);
-            $entityManager->flush();
+        if ($this->getUser()->getUsername() == $userPhoto->getUser()->getUsername()) {
+            $slug = $userPhoto->getEpisode()->getSlug();
+            if ($this->isCsrfTokenValid('delete' . $userPhoto->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($userPhoto);
+                $entityManager->flush();
+            }
+            return $this->redirectToRoute('user_photo_index', array('slug' => $slug));
+        } elseif ($this->getUser()->getRoles()) {
+            if ($this->isCsrfTokenValid('delete' . $userPhoto->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($userPhoto);
+                $entityManager->flush();
+            }
+            return $this->redirectToRoute('user_photo_all');
         }
-
-        return $this->redirectToRoute('user_photo_all');
     }
 
 
