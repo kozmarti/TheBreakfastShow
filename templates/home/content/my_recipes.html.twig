@@ -5,10 +5,12 @@
     {% if my_episodes %}
         <div class="d-flex flex-wrap justify-content-center m-5">
     {% for recipe in my_episodes %}
+        <a class="hover-text-decoration-none" href="{{ path('episode_show', {'slug': recipe.slug}) }}">
         <div class="d-flex flex-column flex-nowrap align-items-center use-shadow image-shadow m-4">
         <img class="small-image image-shadow m-2" src="/uploads/{{ recipe.images.meal }}" alt="image of {{ recipe.recipename }}">
-        <a class="episode-title-text simple-police blue-text-hoverable" href="{{ path('episode_show', {'slug': recipe.slug}) }}">{{ recipe.recipename }}</a>
+        <div class="simple-police blue-text-hoverable">{{ recipe.recipename }}</div>
         </div>
+        </a>
     {% endfor %}
         {% else %}<div class="d-flex flex-column justify-content-center align-items-center ml-2 mr-2 mt-5 ">
             <div class="simple-police dark-text"> You have no favourite recipes yet. Go to <a class="episode-title-text blue-text-hoverable" href="{{ path('season_show', {'slug': 'season-1-winter'} ) }}">recipes</a>  and use the<span class="heart-color"> <i class="fas fa-heart"></i></span> to save them here.  </div>

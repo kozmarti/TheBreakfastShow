@@ -1,5 +1,5 @@
 .actors-list-one {
-  animation: moveSlideshowOne 60s linear infinite;
+  animation: moveSlideshowOne 100s linear infinite;
   list-style: none;
   & a {
     font-style: italic;
@@ -7,6 +7,7 @@
     color: white !important;
     letter-spacing: .2rem;
   }
+
 }
 @keyframes moveSlideshowOne {
   100% {
@@ -15,7 +16,7 @@
 }
 
 .actors-list-two {
-  animation: moveSlideshowTwo 60s linear infinite;
+  animation: moveSlideshowTwo 100s linear infinite;
   list-style: none;
   & a {
     font-style: italic;
@@ -23,6 +24,7 @@
     color: white !important;
     letter-spacing: .2rem;
   }
+
 }
 .actors-title{
   font-size: 1.4em !important;

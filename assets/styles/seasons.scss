@@ -39,6 +39,12 @@
 
 }
 
+@media (max-width: 1400px) {
+  .season-navigation-large-individual-recipe{
+    display: none
+}
+
+}
 @media (min-width: 1199px) {
 .season-navigation-small {
   display: none
@@ -76,4 +82,10 @@
 
 .create-season-form input {
   filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.text-decoration-hover-none{
+  &:hover{
+    text-decoration: none;
+  }
 }

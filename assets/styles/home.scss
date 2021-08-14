@@ -104,6 +104,9 @@ body{
     color: $dark-blue !important;
   }
 }
+.hover-text-decoration-none:hover{
+  text-decoration: none !important;
+}
 
 .blue-text-dark {
   color: $darker-blue;

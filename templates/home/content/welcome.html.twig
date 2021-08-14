@@ -54,7 +54,23 @@
          {{ encore_entry_script_tags('app') }}
 
 <script>
+    let imgs = document.images,
+        len = imgs.length,
+        counter = 0;
 
+    [].forEach.call( imgs, function( img ) {
+        if(img.complete)
+            incrementCounter();
+        else
+            img.addEventListener( 'load', incrementCounter, false );
+    } );
+
+    function incrementCounter() {
+        counter++;
+        if ( counter === len ) {
+            console.log( 'All images loaded!' );
+        }
+    }
 const changingImages = document.getElementsByClassName("image-cycle");
 
 let imageDataBase = [];
@@ -72,9 +88,8 @@ function myTimer() {
     changingImages[order[second_change_index]].classList.remove("appear-effect");
     changingImages[order[first_change_index]].classList.add("disappear-effect");
     changingImages[order[second_change_index]].classList.add("disappear-effect");
-    console.log("before");
-    setTimeout(function(){ changingImages[order[first_change_index]].src=imageDataBase[0];  console.log("first 2 s"); }, 4000);
-    setTimeout(function(){changingImages[order[second_change_index]].src=imageDataBase[1]; console.log("second 2 s");}, 4000);
+    setTimeout(function(){ changingImages[order[first_change_index]].src=imageDataBase[0]; }, 4000);
+    setTimeout(function(){changingImages[order[second_change_index]].src=imageDataBase[1]; }, 4000);
     setTimeout(function(){changingImages[order[first_change_index]].classList.add("appear-effect");   }, 2000);
     setTimeout(function(){changingImages[order[second_change_index]].classList.add("appear-effect");}, 2000);
     imageDataBase.shift();
