@@ -6,8 +6,23 @@
 
 
 
+
     <div class="wide-container-wrapper">
+
+
         <div class="narrow-container">
+    <div id="spinner-to-hide" class="wide-container welcome-wide-container spinning-circle pt-5">
+        <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+         <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+         <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
             <div class="season-navigation-small">
 
                 <div class="dropdown">
@@ -34,6 +49,7 @@
                 </button>
             {% endif %}
 
+    <div  id="content-to-show" class="d-none"> 
     {% for episode in episodes %}
         <a class="text-decoration-hover-none" href="{{ path('episode_show', {'slug': episode.slug}) }}">
         <div class="d-flex justify-content-between episode-container rounded use-shadow mt-3">
@@ -49,11 +65,33 @@
         </a>
             {% endfor %}
 
-
+ </div>
         </div>
 
 </div>
 
+<script>
+    let imgs = document.images,
+        len = imgs.length,
+        counter = 0;
 
+    [].forEach.call( imgs, function( img ) {
+        if(img.complete)
+            incrementCounter();
+        else
+            img.addEventListener( 'load', incrementCounter, false );
+    } );
+
+    function incrementCounter() {
+        counter++;
+        if ( counter === len ) {
+            let toHide = document.getElementById("spinner-to-hide")
+            let toShow = document.getElementById("content-to-show")
+            toShow.classList.remove("d-none");
+            toShow.classList.add("fade-in-effect");
+            toHide.classList.add("d-none");
+        }
+    }
+    </script>
 
 {% endblock %}

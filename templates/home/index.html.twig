@@ -3,16 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Delicious breakfast recipes organized in seasons and episodes, sharing new one each week spiced with fun facts to learn about ingredients. Participate, save your own recipes and share the ones you prepared yourself">
+    <meta name="keywords" content="breakfast,The Breakfast Show, Breakfast recipes, eat, start of the day">
+    <meta name="author" content="Renata Aradi">
+    <meta property="og:image" content="{{ asset('uploads/S1E3_3.jpg')  }}" />
     <link rel="icon" href="{{ asset('build/images/logo/002-croissant.png') }}" />
     <title>{% block title %}The Breakfast Show{% endblock %}</title>
     {% block stylesheets %} {{ encore_entry_link_tags('app') }}{% endblock %}
     {% block javascripts %}   {{ encore_entry_script_tags('app') }}{% endblock %}
 </head>
 <body class="home-bg">
-    <video autoplay muted id="myVideo" >
+<div class="wide-container-wrapper">
+    <div id="spinner-to-hide" class="wide-container welcome-wide-container spinning-circle padding-20">
+        <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+         <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+         <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+       </div>
+    <video class="d-none" autoplay muted playsinline id="myVideo" >
         <source src="{{ asset('build/images/tbsvideo.mp4') }}" type="video/mp4" >
     </video>
     <img class="white-logo" src="{{ asset('build/images/logo/logo_white.png') }}" alt="tbf-logo">
-    <a href="{{ path("welcome") }}"><button class="home-button"> enter </button></a>
+    <a href="{{ path("welcome") }}"><button class="home-button d-none" id="home-button-to-show"> enter </button></a>
+<script>
+let video = document.getElementById("myVideo");
+let HomeButton = document.getElementById("home-button-to-show");
+let toHide = document.getElementById("spinner-to-hide")
+
+
+video.addEventListener('canplaythrough', (e) => {
+  console.log('I think I can play through the entire ' +
+      'video without ever having to stop to buffer.');
+    HomeButton.classList.remove("d-none");
+    HomeButton.classList.add("home-button-appear");
+    video.classList.remove("d-none");
+    video.classList.add("fade-in-effect");
+    toHide.classList.add("d-none");
+});
+</script>
 </body>
 </html>

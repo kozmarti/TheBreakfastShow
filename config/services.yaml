@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     upload_directory: '%kernel.project_dir%/public/uploads/'
+    router.request_context.scheme: 'https'
+    asset.request_context.secure: true
 
 services:
     # default configuration for services in *this* file

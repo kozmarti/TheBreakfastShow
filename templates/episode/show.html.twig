@@ -24,8 +24,20 @@
 <div class="d-flex justify-content-center m-4 white-text small-text">
     <div class="handwriting plan-map-flex"> <div class="season-where-flex"><a class="white-text underlined-text" href="{{ path('season_show', {'slug': episode.season.slug}) }}">Season {{ episode.season.number }}.   </a> <i class="fas fa-arrow-right"></i> <span>Episode {{episode.number }}.</span> </div></div>
 </div>
-
-
+    <div class="episode-box d-flex flex-column align-items-center mb-5">
+    <div id="spinner-to-hide" class="wide-container welcome-wide-container spinning-circle pt-5">
+        <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+         <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+         <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    </div>
+<div id="content-to-show" class="d-none">
 
     <div class="episode-box d-flex flex-column align-items-center mb-5">
         <div>
@@ -94,7 +106,7 @@
                                 {% endif %}
                                 <li> {% if multiplier is not same as(0) and ingr.quantity is not null%}
 
-                                        {{ingr.quantity / episode.person * multiplier }}
+                                        {{(ingr.quantity / episode.person * multiplier)|round(2, 'common')  }}
                                     {% else %}
                                         {{ingr.quantity }}
                                     {% endif %}
@@ -106,7 +118,7 @@
                                 <li>
                                     {% if multiplier is not same as(0) and ingr.quantity is not null %}
 
-                                        {{ingr.quantity / episode.person * multiplier }}
+                                        {{(ingr.quantity / episode.person * multiplier)|round(2, 'common') }}
                                     {% else %}
                                         {{ingr.quantity }}
                                     {% endif %}
@@ -148,6 +160,7 @@
 
     </div>
 
+    </div>
     </div>
 
 

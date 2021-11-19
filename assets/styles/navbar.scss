@@ -1,106 +1,119 @@
-.navbar-logo{
-  height: 100px;
-  width: auto;
-  transform: scale(0.9)
+.navbar-logo {
+    height: 100px;
+    width: auto;
+    transform: scale(0.9)
 }
+
 .nav-link {
-  color: $light-brown !important;
-  text-wrap: none;
-  padding: 15px 45px !important;
-  &:hover{
-    color: $dark-brown !important;
-    border-bottom: 3px solid $dark-brown;
-  }
+    color: $light-brown !important;
+    white-space: nowrap;
+    padding: 15px 45px !important;
+    &:hover {
+        color: $dark-brown !important;
+        border-bottom: 3px solid $dark-brown;
+    }
 }
 
 .navbar {
-  padding: 0 !important;
-  height: 90px;
+    padding: 0 !important;
+    height: 90px;
 }
 
-.active a{
-  z-index: 1000;
-  color: $dark-brown !important;
-  border-bottom: 3px solid $dark-brown;
-  &:hover{
-    cursor: default;
-  }
+.active a {
+    z-index: 1000;
+    color: $dark-brown !important;
+    border-bottom: 3px solid $dark-brown;
+    &:hover {
+        cursor: default;
+    }
 }
 
-.dropdown-item.active, .dropdown-item:active {
-  z-index: 1000;
-  color: $dark-brown !important;
-  border-bottom: 3px solid $dark-brown !important;
-  background-color: white !important;
+.dropdown-item.active,
+.dropdown-item:active {
+    z-index: 1000;
+    color: $dark-brown !important;
+    border-bottom: 3px solid $dark-brown !important;
+    background-color: white !important;
 }
 
-@media (max-width: 1200px) {
-  .navbar-logo {
-    height: 70px;
-    width: auto;
-    transform: scale(0.9)
-  }
-  .navbar-nav{
-    font-size: 18px !important;
-  }
-  .nav-link {
-    padding: 10px !important;
-  }
-  }
-
-.navbar-expand-lg .navbar-collapse{
-  justify-content: center;
-  z-index: 1000;
+@media (max-width: 1380px) {
+    .navbar-logo {
+        height: 70px;
+        width: auto;
+        transform: scale(0.9)
+    }
+    .navbar-nav {
+        font-size: 18px !important;
+    }
+    .nav-link {
+        padding: 10px !important;
+    }
 }
 
-
-.fb-logo, .insta-logo {
-  width: 30px !important;
-  height: auto;
-  margin: 5px;
+.navbar-expand-lg .navbar-collapse {
+    justify-content: center;
+    z-index: 1000;
 }
 
+.fb-logo,
+.insta-logo {
+    width: 30px !important;
+    height: auto;
+    margin: 5px;
+}
 
 .bg-white {
-  background-color: white;
+    background-color: white;
 }
 
-.search-button{
-  background-color: transparent;
-  border: none;
-  color: $dark-brown;
+.search-button {
+    background-color: transparent;
+    border: none;
+    color: $dark-brown;
 }
-
 
 .searchbar {
-  margin: 5px;
+    margin: 5px;
 }
 
 .disappear-mobile {
-  background-color: white;
-  z-index: 1000;
+    background-color: white;
+    z-index: 1000;
 }
 
-@media (max-width: 630px) {
-.disappear-mobile{
-  display: none !important;
-
-}
-}
-
-.custom-file{
-  overflow: hidden;
+@media (max-width: 991px) {
+    .disappear-mobile {
+        display: none !important;
+    }
 }
 
-#user_photo_imageFile_file, #episode_images_mealFile_file, #episode_images_ingredientFile_file, #episode_images_ownerphotoFile_file{
-  left: -83px;
-  opacity: 1;
-  font-family: 'Montserrat', sans-serif;
-  color: $dark-brown;
+@media (min-width: 992px) {
+    .disappear-not-mobile {
+        display: none !important;
+    }
 }
 
-.col-form-label{
-  font-family: 'Montserrat', sans-serif;
-  color: $dark-brown;
+.custom-file {
+    overflow: hidden;
 }
 
+#user_photo_imageFile_file,
+#episode_images_mealFile_file,
+#episode_images_ingredientFile_file,
+#episode_images_ownerphotoFile_file {
+    left: -83px;
+    opacity: 1;
+    font-family: 'Montserrat', sans-serif;
+    color: $dark-brown;
+}
+
+.col-form-label {
+    font-family: 'Montserrat', sans-serif;
+    color: $dark-brown;
+}
+
+@media (max-width: 1040px) {
+    .nav-link-to-reduce {
+        font-size: 0.8em;
+    }
+}

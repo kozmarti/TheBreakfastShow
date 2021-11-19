@@ -3,8 +3,19 @@
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
 <div class="wide-container-wrapper">
-   <div class="wide-container welcome-wide-container">
-
+    <div id="spinner-to-hide" class="wide-container welcome-wide-container spinning-circle pt-5">
+        <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+         <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+         <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    
+   <div id="content-to-show" class="wide-container welcome-wide-container loaded-pictures d-none">
        {% for i in 0..3 %}
            <div class="1size3-flex-item">
                 <img class="image-{{ i }} {% if loop.index is even%} small-image{% else%}  large-image {% endif %} introduction-images image-shadow image-cycle" src="/uploads/{{ images[i] }}" alt="image {{ i }}">
@@ -21,18 +32,18 @@
             Therefore, I started collecting my recipes and sharing them in the social media <i class="fab fa-instagram white-pic"></i> <i class="white-pic fab fa-facebook-square white-pic"></i>    so
             you can get proof of the above listed characteristics, get to know me and what I represent.
            </p>
-        <h5 class="handwriting dark-text">But first, where it got started?</h5>
+        <h5 class="handwriting dark-text">But first, where did it get started?</h5>
         <p  class="simple-police light-text">When I was a university student  <i class="fas fa-graduation-cap"></i> and studied for my exams, I have always had the tv on. I wonder if it’s
             only me… Not because I wanted to distract my attention on purpose but because in this way, I could
             make myself believe that it was not all about studying (boring...) but also letting some fun in. This fun
             were the cooking and baking shows which has become my passion straight away.
-        <h5 class="handwriting dark-text">And where it may take me to?</h5>
+        <h5 class="handwriting dark-text">And where may it take me?</h5>
         <p  class="simple-police light-text">I have always known that one day I would like to start a business  <i class="fas fa-suitcase"></i> where I can be in touch with people,
             use my creative side and skills and most importantly represent myself.
 </p>
 
         <p  class="simple-police dark-text">I hope that you will enjoy preparing my recipes as much as I do, and moreover I believe that one day I
-            can also welcome and serve you at my own breakfast place in Budapest <span class="heart-color"> <i class="fas fa-heart"></i></span>, Hungary. </p>
+            can also welcome and serve you at my own breakfast place <span class="heart-color"> <i class="fas fa-heart"></i></span>. </p>
         </div>
     </div>
     </div>
@@ -68,7 +79,11 @@
     function incrementCounter() {
         counter++;
         if ( counter === len ) {
-            console.log( 'All images loaded!' );
+            let toHide = document.getElementById("spinner-to-hide")
+            let toShow = document.getElementById("content-to-show")
+            toShow.classList.remove("d-none");
+            toShow.classList.add("fade-in-effect");
+            toHide.classList.add("d-none");
         }
     }
 const changingImages = document.getElementsByClassName("image-cycle");

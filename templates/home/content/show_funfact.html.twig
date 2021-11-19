@@ -3,8 +3,21 @@
 {% block body %}
     {% include 'home/component/_nav.html.twig' %}
 
+<div class="episode-box d-flex flex-column align-items-center mb-5">
+    <div id="spinner-to-hide" class="wide-container welcome-wide-container spinning-circle pt-5">
+        <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+         <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+         <div class="spinner-grow spinner-grow-sm m-2 dark-text" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    </div>
 
-
+    <div  id="content-to-show" class="d-none"> 
     <div class="d-flex flex-column align-items-center">
         <h1 class="actors-title simple-police m-5 p-5 fact-title">
 
@@ -16,7 +29,10 @@
 
 
     </div>
-
-
+    </div>
+     {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('episode_show') }}
+    {% endblock %}
 
 {% endblock %}

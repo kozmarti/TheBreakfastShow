@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Delicious breakfast recipes organized in seasons and episodes, sharing new one each week spiced with fun facts to learn about ingredients. Participate, save your own recipes and share the ones you prepared yourself">
+    <meta name="keywords" content="breakfast,The Breakfast Show, Breakfast recipes, eat, start of the day">
+    <meta name="author" content="Renata Aradi">
+    <meta property="og:image" content="{{ asset('uploads/S1E3_3.jpg')  }}" />
+    <link rel="icon" href="{{ asset('build/images/logo/002-croissant.png') }}" />
+    <title>{% block title %}The Breakfast Show{% endblock %}</title>
+    {% block stylesheets %} {{ encore_entry_link_tags('app') }}{% endblock %}
+    {% block javascripts %}   {{ encore_entry_script_tags('app') }}{% endblock %}
+</head>
+<body class="home-bg">
+    <video autoplay id="myVideo" >
+        <source src="{{ asset('build/images/tbsvideo.mp4') }}" type="video/mp4" >
+    </video>
+    <img class="white-logo" src="{{ asset('build/images/logo/logo_white.png') }}" alt="tbf-logo">
+    <a href="{{ path("welcome") }}"><button class="home-button"> enter </button></a>
+</body>
+</html>

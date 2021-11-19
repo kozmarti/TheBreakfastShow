@@ -1,125 +1,151 @@
-html{
-  height: 100%;
-
-}
-body{
-  height: 100%;
-  animation: fadein 2s;
-
-
-}
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-#myVideo {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.white-logo{
-  position: fixed;
-  width: 400px;
-  height: auto;
-  top:10px;
-  z-index: 1000;
-}
-.home-bg{
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to right top,$orange, $yellow);
-  height: 100vh;
-}
-.home-button {
-  font-family: 'Pacifico', cursive;
-  height: 100px;
-  width: 150px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  background-color: $dark-blue;
-  margin-top: 200px;
-  margin-left: -75px;
-  color:white;
-  border:none;
-  font-size: 2em;
-  border-radius: 5px;
-  animation: appear 9s;
-  &:hover {
-      background-color: $darker-blue;
-      transition: 2s;
-  }
-  & a {
-    text-decoration: none;
-    color: white;
-    &:hover {
-      text-decoration: none;
-      color: white;
+    html {
+        height: 100%;
     }
-  }
-}
-
-
-
-@keyframes appear {
-  0% {opacity: 0}
-  80% {opacity: 0}
-  100% {opacity: 1}
-}
-
-
-// Extra small devices (portrait phones, less than 576px)
-// No media query for `xs` since this is the default in Bootstrap
-
-// Small devices (landscape phones, 576px and up)
-//@media (min-width: 576px) { ... }
-
-// Medium devices (tablets, 768px and up)
-@media (max-width: 768px) {
-  .home-button {
-    font-family: 'Pacifico', cursive;
-    height: 50px;
-    width: 75px;
-    font-size: 1em;
-    margin-top: 150px;
-    margin-left: -37px;
-
-  }
-  .white-logo {
-    position: fixed;
-    width: 400px;
-    height: auto;
-    top: 10px;
-    top: 0;
-    left: 50%;
-    margin-left: -200px;
-  }
-}
-
-
-.blue-text-hoverable{
-  color: $darker-blue !important;
-  &:hover{
-    color: $dark-blue !important;
-  }
-}
-.hover-text-decoration-none:hover{
-  text-decoration: none !important;
-}
-
-.blue-text-dark {
-  color: $darker-blue;
-}
-
-.blue-text-light {
-  color: $dark-blue;
-}
-
-// Large devices (desktops, 992px and up)
-//@media (min-width: 992px) { ... }
-
-// Extra large devices (large desktops, 1200px and up)
-//@media (min-width: 1200px) { ... }
-
-
+    
+    body {
+        height: 100%;
+        animation: fadein 2s;
+    }
+    
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    .fade-in-effect {
+        animation: appear-slowly 3s;
+    }
+    
+    #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .white-logo {
+        position: fixed;
+        width: 400px;
+        height: auto;
+        top: 10px;
+        z-index: 1000;
+    }
+    
+    .home-bg {
+        background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to right top, $orange, $yellow);
+        height: 100vh;
+    }
+    
+    .home-button {
+        font-family: 'Pacifico', cursive;
+        height: 100px;
+        width: 150px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        background-color: $dark-blue;
+        margin-top: 200px;
+        margin-left: -75px;
+        color: white;
+        border: none;
+        font-size: 2em;
+        border-radius: 5px;
+        &:hover {
+            background-color: $darker-blue;
+            transition: 2s;
+        }
+        & a {
+            text-decoration: none;
+            color: white;
+            &:hover {
+                text-decoration: none;
+                color: white;
+            }
+        }
+    }
+    
+    .padding-20 {
+        padding-top: 10rem !important;
+    }
+    
+    .home-button-appear {
+        animation: appear 9s;
+    }
+    
+    @keyframes appear {
+        0% {
+            opacity: 0
+        }
+        80% {
+            opacity: 0
+        }
+        100% {
+            opacity: 1
+        }
+    }
+    
+    @keyframes appear-slowly {
+        0% {
+            opacity: 0
+        }
+        20% {
+            opacity: 0
+        }
+        100% {
+            opacity: 1
+        }
+    }
+    
+    // Extra small devices (portrait phones, less than 576px)
+    // No media query for `xs` since this is the default in Bootstrap
+    // Small devices (landscape phones, 576px and up)
+    //@media (min-width: 576px) { ... }
+    // Medium devices (tablets, 768px and up)
+    @media (max-width: 768px) {
+        .home-button {
+            font-family: 'Pacifico', cursive;
+            height: 50px;
+            width: 75px;
+            font-size: 1em;
+            margin-top: 150px;
+            margin-left: -37px;
+        }
+        .white-logo {
+            position: fixed;
+            width: 400px;
+            height: auto;
+            top: 10px;
+            top: 0;
+            left: 50%;
+            margin-left: -200px;
+        }
+    }
+    
+    .blue-text-hoverable {
+        color: $darker-blue !important;
+        &:hover {
+            color: $dark-blue !important;
+        }
+    }
+    
+    .hover-text-decoration-none:hover {
+        text-decoration: none !important;
+    }
+    
+    .blue-text-dark {
+        color: $darker-blue;
+    }
+    
+    .blue-text-light {
+        color: $dark-blue;
+    }
+    
+    // Large devices (desktops, 992px and up)
+    //@media (min-width: 992px) { ... }
+    // Extra large devices (large desktops, 1200px and up)
+    //@media (min-width: 1200px) { ... }

@@ -8,38 +8,46 @@
         <div class="collapse navbar-collapse bg-white" id="navbarToggler">
             <ul class="navbar-nav mt-2 mt-lg-0 handwriting large-text">
                 <li class="nav-item {% if aboutme %} active {% endif %}">
-                    <a class="nav-link light-text" href="{{ path('welcome') }}">About Me </a>
+                    <a class="nav-link nav-link-to-reduce light-text" href="{{ path('welcome') }}">About Me </a>
                 </li>
                 <li class="nav-item {% if recipes %} active {% endif %}">
-                    <a class="nav-link light-text" href="{{ path('season_show', {'slug': 'season-1-winter'} ) }}">Recipes</a>
+                    <a class="nav-link nav-link-to-reduce light-text" href="{{ path('season_show', {'slug': 'season-1-winter'} ) }}">Recipes</a>
                 </li>
                 <li class="nav-item {% if funfacts %} active {% endif %}">
-                    <a class="nav-link light-text" href="{{ path('fun_fact') }}">FunFacts</a>
+                    <a class="nav-link nav-link-to-reduce light-text" href="{{ path('fun_fact') }}">FunFacts</a>
                 </li>
                 {% if app.user %}
                     <li class="nav-item  {% if myrecipes %} active {% endif %}">
-                        <a class="nav-link light-text" href="{{ path('recipes_my_recipes') }}">My Recipes</a>
+                        <a class="nav-link nav-link-to-reduce light-text" href="{{ path('recipes_my_recipes') }}">My Recipes</a>
                     </li>
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('user_photo_all') }}">Approve User photos </a>
+                            <a class="nav-link nav-link-to-reduce" href="{{ path('user_photo_all') }}">Approve User photos </a>
                         </li>
                     {% endif %}
                     <li class="nav-item  {% if login %} active {% endif %}">
-                        <a class="nav-link light-text" href="{{ path('app_logout') }}">LogOut</a>
+                        <a class="nav-link light-text nav-link-to-reduce" href="{{ path('app_logout') }}">LogOut</a>
                     </li>
                 {% else %}
                     <li class="nav-item  {% if login %} active {% endif %}">
-                        <a class="nav-link light-text" href="{{ path('app_login') }}">Login</a>
+                        <a class="nav-link light-text nav-link-to-reduce" href="{{ path('app_login') }}">Login</a>
                     </li>
                 {% endif %}
+                <li class="disappear-not-mobile">
+                 <form class="searchbar" action="{{ path('search') }}" method="get">
+                <div class="d-flex flex-nowrap">
+                    <input class="handwriting rounded light-text" type="text" name="to-search" placeholder="Search" >
+                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+             </li>
 
             </ul>
 
         </div>
 
 
-        <div class="d-flex disappear-mobile rounded">
+        <div class="d-flex rounded">
     {#
 
             <div class="col-7 d-flex justify-content-end">
@@ -55,8 +63,8 @@
 
             </div>
     #}
-            <form class="searchbar" action="{{ path('search') }}" method="get">
-                <div>
+            <form class="searchbar disappear-mobile" action="{{ path('search') }}" method="get">
+                <div class="d-flex flex-nowrap">
                     <input class="handwriting rounded light-text" type="text" name="to-search" placeholder="Search" >
                     <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
                 </div>
@@ -65,8 +73,8 @@
             {% if app.user %}
             <span class="handwriting light-text p-2">Hello {{ app.user.username }}</span>
             {% endif %}
-        <a href="https://www.instagram.com/the_breakfast_show/" target="_blank"><img class="insta-logo" src="{{ asset('build/images/logo/instagram.svg') }}" alt="instagram"></a>
-        <a href="https://www.facebook.com/thebreakfastshow1" target="_blank"><img class="fb-logo" src="{{ asset('build/images/logo/facebook.svg') }}" alt="facebook"></a>
+        <a class="searchbar disappear-mobile" href="https://www.instagram.com/the_breakfast_show/" target="_blank"><img class="insta-logo" src="{{ asset('build/images/logo/instagram.svg') }}" alt="instagram"></a>
+        <a class="searchbar disappear-mobile" href="https://www.facebook.com/thebreakfastshow1" target="_blank"><img class="fb-logo" src="{{ asset('build/images/logo/facebook.svg') }}" alt="facebook"></a>
 
         </div>
     </nav>
